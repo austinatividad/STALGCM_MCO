@@ -25,4 +25,13 @@ public class Alphabet {
     public void popSymbol(){
         symbols.remove(symbols.size()-1);
     }
+
+    public String toString(){
+        String alphabetString = "Alphabet (Allowed Stack Symbols): ";
+        for (Symbol symbol : symbols) {
+            alphabetString += symbol.getValue();
+            alphabetString += ", ";
+        }
+        return alphabetString;
+    }
 }

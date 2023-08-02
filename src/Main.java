@@ -1,9 +1,8 @@
 
-import Inputs.State;
-import Inputs.Symbol;
-import Inputs.Transition;
-import Inputs.TransitionSet;
+import Inputs.*;
+import Machine.*;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
@@ -155,9 +154,42 @@ public class Main {
 
 
         //use state tostring for each state
+        //STATESET IS NOW COMPLETE-----------------------------------------------------------------------
+        System.out.println("List of States ------------------");
         for (State state : stateSet) {
             System.out.println(state.toString());
         }
+
+        //INITIALIZE TAPE
+        Tape tape = new Tape();
+        for (String symbol : tapeSymbols) {
+            tape.addSymbol(new Symbol(symbol));
+        }
+
+        System.out.println("Tape: ");
+        for (Symbol symbol : tape.getSymbols()) {
+            System.out.println(symbol.getValue());
+        }
+        //TAPE IS NOW COMPLETE-----------------------------------------------------------------------
+
+
+        //INITIALIZE STACK ALPHABET
+        Alphabet stackAlphabet = new Alphabet();
+        for (String symbol : stackSymbols) {
+            stackAlphabet.addSymbol(new Symbol(symbol));
+        }
+
+
+        System.out.println("Stack Alphabet: ");
+        for (Symbol symbol : stackAlphabet.getSymbols()) {
+            System.out.println(symbol.getValue());
+        }
+        //STACK ALPHABET IS NOW COMPLETE-----------------------------------------------------------------------
+
+        //Initialize Machine
+        Machine machine = new Machine( stackAlphabet, tape, stateSet);
+
+        System.out.println(machine.toString());
 
 
 
