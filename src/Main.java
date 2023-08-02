@@ -14,7 +14,7 @@ public class Main {
 
     //read file
     try {
-        FileReader f = new FileReader("../inputs/testing.txt");
+        FileReader f = new FileReader("./inputs/testing.txt");
         BufferedReader br = new BufferedReader(f);
         State initialState = new State(null, false, false);
 
@@ -190,11 +190,16 @@ public class Main {
 
         //Initialize Machine
         Machine machine = new Machine(stackAlphabet, tape, stateSet, initialState);
+    
+        while (true) {
+            System.in.read();
+            machine.stepSim();
+        }
 
-        System.out.println(machine.toString());
+        //System.out.println(machine.toString());
 
         //RUN View
-        View view = new View(machine);
+        //View view = new View(machine);
     }  catch (FileNotFoundException e) {
         throw new RuntimeException(e);
     } catch (IOException e) {

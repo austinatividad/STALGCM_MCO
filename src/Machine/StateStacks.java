@@ -17,10 +17,30 @@ public class StateStacks {
 
     public void addStack(State state, Stack stack0, Stack stack1, int inputIndex) {
         stateStack.add(new StateStackItem(state, stack0, stack1, inputIndex));
+        printStackSeq(stateStack.size()-1);
     }
 
     public void addStack(StateStackItem stateStackItem) {
         stateStack.add(stateStackItem);
+        printStackSeq(stateStack.size()-1);
+    }
+
+    private void printStackSeq(int x) {
+        System.out.println("Current State" + stateStack.get(x).state.getSymbol().getValue());
+
+        System.out.print("Stack 1: ");
+
+        for (int i = 0; i < stateStack.get(x).stack0.getStack().size(); i++) {
+            System.out.print(stateStack.get(x).stack0.getStack().get(i).getValue() + " ");
+        }
+
+        System.out.print("\nStack 2: ");
+        
+        for (int i = 0; i < stateStack.get(x).stack1.getStack().size(); i++) {
+            System.out.print(stateStack.get(x).stack1.getStack().get(i).getValue() + " ");
+        }
+
+        System.out.println("\nRead Index: " + stateStack.get(x).inputIndex + "\n");
     }
 
     public StateStackItem getStack() {

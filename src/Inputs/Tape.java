@@ -35,7 +35,8 @@ public class Tape {
     }
 
     public void increment() {
-        currentIndex++;
+        ++currentIndex;
+        System.out.println("increment tapes");
     }
 
     public ArrayList<Symbol> getSymbols(){

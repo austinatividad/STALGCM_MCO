@@ -1,14 +1,11 @@
-3
-A B C
-5
-1 0 1 1 0
+2
+A B
+1
+1
 2
 J K
-3
-A 1 X J X K B
-B 1 J X K X B
-B 1 Z X Z X C
+1
+A 1 Z L Z L B
 A
 1
-C
-
+B
