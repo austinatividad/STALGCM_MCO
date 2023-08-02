@@ -31,7 +31,22 @@ public class State {
         transitionSet.addTransition(transition);
     }
 
+    private String stateType(){
+        if(isInitial && isFinal){
+            return "Initial and Final";
+        } else if(isInitial){
+            return "Initial";
+        } else if(isFinal){
+            return "Final";
+        } else {
+            return "Regular";
+        }
+    }
     public String toString(){
-        return "State: " + symbol.getValue() + " isInitial: " + isInitial + " isFinal: " + isFinal + "\n" + transitionSet.toString() + "\n";
+        return "State: " +
+                symbol.getValue() +
+                " Type: " + stateType() +
+                "\n" + transitionSet.toString() +
+                "\n";
     }
 }
