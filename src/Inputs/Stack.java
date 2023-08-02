@@ -14,6 +14,14 @@ public class Stack {
         stack.add(new Symbol("Z"));
     }
 
+    public Stack(Stack stack) {
+        this.stack = stack.getStack();
+    }
+
+    public ArrayList<Symbol> getStack() {
+        return stack;
+    }
+
     public void push(Symbol symbol){
         stack.add(symbol);
     }

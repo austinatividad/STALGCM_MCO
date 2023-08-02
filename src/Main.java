@@ -16,6 +16,7 @@ public class Main {
     try {
         FileReader f = new FileReader("./inputs/testing.txt");
         BufferedReader br = new BufferedReader(f);
+        State initialState = new State(null, false, false);
 
         //get number of states
         int stateCount = Integer.parseInt(br.readLine());
@@ -92,7 +93,10 @@ public class Main {
                 }
             }
             //create a new state
-            State newState = new State(newStateSymbol,isInitial, isFinal);
+            State newState = new State(newStateSymbol, isInitial, isFinal);
+            if (isInitial) {
+                initialState = newState;
+            }
             //add it to the stateSet
             stateSet.add(newState);
         }
@@ -185,7 +189,7 @@ public class Main {
         //STACK ALPHABET IS NOW COMPLETE-----------------------------------------------------------------------
 
         //Initialize Machine
-        Machine machine = new Machine( stackAlphabet, tape, stateSet);
+        Machine machine = new Machine(stackAlphabet, tape, stateSet, initialState);
 
         System.out.println(machine.toString());
 
