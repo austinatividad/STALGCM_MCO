@@ -31,6 +31,10 @@ public class State {
         transitionSet.addTransition(transition);
     }
 
+    public TransitionSet getTransitions() {
+        return transitionSet;
+    }
+
     private String stateType(){
         if(isInitial && isFinal){
             return "Initial and Final";

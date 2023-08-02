@@ -22,6 +22,14 @@ public class Stack {
         return stack;
     }
 
+    public Boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
+    public Symbol getLastSymbol() {
+        return stack.get(stack.size()-1);
+    }
+
     public void push(Symbol symbol){
         stack.add(symbol);
     }

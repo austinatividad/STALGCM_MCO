@@ -15,6 +15,7 @@ public class Tape {
 
     public Tape(ArrayList<Symbol> symbols){
         this.symbols = symbols;
+        this.currentIndex = 0;
     }
 
     public Symbol getSymbol(int index){
@@ -25,12 +26,16 @@ public class Tape {
         return symbols.get(currentIndex);
     }
 
-    public void increment() {
-        currentIndex++;
+    public int getCurrentIndex() {
+        return currentIndex;
     }
 
-    public void reset() {
-        currentIndex = 0;
+    public void setCurrentIndex(int x) {
+        currentIndex = x;
+    }
+
+    public void increment() {
+        currentIndex++;
     }
 
     public ArrayList<Symbol> getSymbols(){

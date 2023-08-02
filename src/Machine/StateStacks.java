@@ -7,17 +7,23 @@ import Inputs.State;
 
 public class StateStacks {
     
-    private ArrayList<stateStackItem> stateStack = new ArrayList<stateStackItem>();
+    private ArrayList<StateStackItem> stateStack = new ArrayList<StateStackItem>();
 
-    public StateStacks() {
+    public StateStacks() {}
 
+    public Boolean isEmpty() {
+        return stateStack.isEmpty();
     }
 
     public void addStack(State state, Stack stack0, Stack stack1, int inputIndex) {
-        new stateStackItem(state, stack0, stack1, inputIndex);
+        stateStack.add(new StateStackItem(state, stack0, stack1, inputIndex));
     }
 
-    public stateStackItem getStack() {
+    public void addStack(StateStackItem stateStackItem) {
+        stateStack.add(stateStackItem);
+    }
+
+    public StateStackItem getStack() {
         return stateStack.get(stateStack.size() - 1);
     }
 
@@ -26,16 +32,4 @@ public class StateStacks {
     }
 }
 
-class stateStackItem {
-    public State state;
-    public Stack stack0;
-    public Stack stack1;
-    public int inputIndex;
 
-    public stateStackItem(State state, Stack stack0, Stack stack1, int inputIndex) {
-        this.state = state;
-        this.stack0 = stack0;
-        this.stack1 = stack1;
-        this.inputIndex = inputIndex;
-    }
-}

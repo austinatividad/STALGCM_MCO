@@ -31,7 +31,7 @@ public class Machine {
         this.tape = tape;
         this.stateSet = stateSet;
         this.stackAlphabet = stackAlphabet;
-        stateStacks.addStack(startState, stack1, stack0, 0);
+        stateStacks.addStack(startState, new Stack(stack0), new Stack(stack1), -1);
     }
 
     public Stack getStack0() {
@@ -44,17 +44,25 @@ public class Machine {
 
     public void startSim() {
         
+        ArrayList<StateStackItem> currentBranches;
+
+        while (stateStacks.isEmpty() == false || (stack0.isEmpty() && stack0.isEmpty())) {
+            tape.increment();
+            stack0 = stateStacks.getStack().stack0;
+            stack1 = stateStacks.getStack().stack1;
+            currentBranches = branchCurrentState(stateStacks.getStack().state, tape);
+            for (StateStackItem stateStackItem : currentBranches) {
+                stateStacks.addStack(stateStackItem);
+            }
+        }
+    }
+
+    private ArrayList<StateStackItem> branchCurrentState(State state, Tape tape) {
+        ArrayList<StateStackItem> returnStates = new ArrayList<StateStackItem>();
         
+        returnStates = state.getTransitions().getValidTransitions(state, tape.getCurrentSymbol(), tape.getCurrentIndex(), stack0, stack1);
 
-        tape.getSymbol(currentTape);
-    }
-
-    private State branchCurrentState() {
-        return null;
-    }
-
-    private Symbol getCurrentSymbol() {
-        return tape.getSymbol(currentTape);
+        return returnStates; 
     }
 
     public String toString() {

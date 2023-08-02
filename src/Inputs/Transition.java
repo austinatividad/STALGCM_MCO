@@ -2,17 +2,17 @@ package Inputs;
 
 public class Transition {
     //Attributes
-    private State currentState;
-    private Symbol inputSymbol;
+    public State currentState;
+    public Symbol inputSymbol;
 
-    private Symbol popStack_0;
-    private Symbol pushStack_0;
+    public Symbol popStack_0;
+    public Symbol pushStack_0;
 
-    private Symbol popStack_1;
-    private Symbol pushStack_1;
+    public Symbol popStack_1;
+    public Symbol pushStack_1;
 
 
-    private State nextState;
+    public State nextState;
 
     //Constructor
     public Transition(State currentState,
@@ -34,6 +34,42 @@ public class Transition {
 
     public Transition getTransition(){
         return this;
+    }
+
+    public Boolean validTransition(Symbol symbol, Stack stack0, Stack stack1) {
+        if (symbol.getValue().equals(inputSymbol.getValue())) {
+            if (!popStack_0.getValue().equals("L")) {
+                if (stack0.getLastSymbol().getValue().equals(popStack_0.getValue())) {
+                    if (!popStack_1.getValue().equals("L")) {
+                        if (stack1.getLastSymbol().getValue().equals(popStack_1.getValue())) {
+                            stack0.pop();
+                            stack1.pop();
+                            stack0.push(pushStack_0);
+                            stack1.push(pushStack_1);
+                            return true;
+                        }
+                    } else {
+                        stack0.pop();
+                        stack0.push(pushStack_0);
+                        stack1.push(pushStack_1);                   
+                    }
+                }
+            } else {
+                if (!popStack_1.getValue().equals("L")) {
+                    if (stack1.getLastSymbol().getValue().equals(popStack_1.getValue())) {
+                        stack1.pop();
+                        stack0.push(pushStack_0);
+                        stack1.push(pushStack_1);
+                        return true;
+                    }
+                } else {
+                    stack0.push(pushStack_0);
+                    stack1.push(pushStack_1);     
+                    return true;           
+                }
+            }
+        }
+        return false;
     }
 
     public String toString(){
