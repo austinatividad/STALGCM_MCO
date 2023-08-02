@@ -157,10 +157,11 @@ public class Main {
 
         //use state tostring for each state
         //STATESET IS NOW COMPLETE-----------------------------------------------------------------------
-        System.out.println("List of States ------------------");
+        System.out.println("\nList of States ------------------");
         for (State state : stateSet) {
-            System.out.println(state.toString());
+            System.out.print(state.toString());
         }
+        //System.out.print("\n");
 
         //INITIALIZE TAPE
         Tape tape = new Tape();
@@ -168,10 +169,11 @@ public class Main {
             tape.addSymbol(new Symbol(symbol));
         }
 
-        System.out.println("Tape: ");
+        System.out.print("Tape: ");
         for (Symbol symbol : tape.getSymbols()) {
-            System.out.println(symbol.getValue());
+            System.out.print(symbol.getValue() + " ");
         }
+        System.out.print("\n");
         //TAPE IS NOW COMPLETE-----------------------------------------------------------------------
 
 
@@ -182,20 +184,17 @@ public class Main {
         }
 
 
-        System.out.println("Stack Alphabet: ");
+        System.out.print("Stack Alphabet: ");
         for (Symbol symbol : stackAlphabet.getSymbols()) {
-            System.out.println(symbol.getValue());
+            System.out.print(symbol.getValue() + " ");
         }
+        System.out.print("\n\n");
         //STACK ALPHABET IS NOW COMPLETE-----------------------------------------------------------------------
 
         //Initialize Machine
         Machine machine = new Machine(stackAlphabet, tape, stateSet, initialState);
 
         View view = new View(machine);
-        while (true) {
-            System.in.read();
-            machine.stepSim();
-        }
 
         //System.out.println(machine.toString());
 

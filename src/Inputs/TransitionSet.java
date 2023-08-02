@@ -24,14 +24,29 @@ public class TransitionSet {
         Stack newStack0;
         Stack newStack1;
 
+        Symbol l = new Symbol("L");
+        for (Transition transition : transitions) {
+            newStack0 = new Stack(stack0);
+            newStack1 = new Stack(stack1);
+
+            if (transition.validTransition(l, stack0, stack1)) {
+                stackItems.add(new StateStackItem(transition.nextState, newStack0, newStack1, inputIndex - 1));
+                System.out.println("Added lambda Transition");
+            }
+        }
+
         for (Transition transition : transitions) {
             newStack0 = new Stack(stack0);
             newStack1 = new Stack(stack1);
 
             if (transition.validTransition(symbol, stack0, stack1)) {
-                stackItems.add(new StateStackItem(currentState, newStack0, newStack1, inputIndex));
+                stackItems.add(new StateStackItem(transition.nextState, newStack0, newStack1, inputIndex));
+                System.out.println("Added " + transition.nextState.getSymbol().getValue() + " Transition");
             }
         }
+
+
+
         return stackItems;
     }
 

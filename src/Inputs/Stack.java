@@ -27,11 +27,16 @@ public class Stack {
     }
 
     public Symbol getLastSymbol() {
+        if (stack.size() == 0) {
+            return new Symbol("L"); 
+        }
         return stack.get(stack.size()-1);
     }
 
     public void push(Symbol symbol){
-        stack.add(symbol);
+        if (!symbol.getValue().equals("L")) {
+            stack.add(symbol);
+        }
     }
 
     public Symbol pop(){

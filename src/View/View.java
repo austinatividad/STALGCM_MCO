@@ -17,6 +17,7 @@ public class View {
     static Color acceptColor = new Color(000,255,000);
     static Color rejectColor = new Color(255, 000, 000);
 
+    private int ctr = 0;
 
     //JFrame Components
     static JFrame frame = new JFrame("2-Stack Pushdown Automata");
@@ -140,6 +141,8 @@ public class View {
         stepButton.setVisible(true);
 
         stepButton.addActionListener(e -> {
+            System.out.println("------------------");
+            System.out.println("Button Presses: " + ++ctr + "\n");
             machine.stepSim(); //TODO: FIX THIS
             updateView();
         });
@@ -225,8 +228,7 @@ public class View {
         //testing
         //stack1Label.setText("Stack 1: XXXXXXZ");
 
-        //automataLabel.setText("Current State: " + machine.getCurrentState().getName());
-
+        automataLabel.setText("Current State: " + machine.getCurrentState());
 
     }
 

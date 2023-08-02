@@ -37,6 +37,8 @@ public class Transition {
     }
 
     public Boolean validTransition(Symbol symbol, Stack stack0, Stack stack1) {
+        System.out.println("Stack 0: " + stack0.toString());
+        System.out.println("Stack 1: " + stack1.toString());
         if (symbol.getValue().equals(inputSymbol.getValue())) {
             if (!popStack_0.getValue().equals("L")) {
                 if (stack0.getLastSymbol().getValue().equals(popStack_0.getValue())) {
@@ -46,12 +48,15 @@ public class Transition {
                             stack1.pop();
                             stack0.push(pushStack_0);
                             stack1.push(pushStack_1);
+                            System.out.println("pop pop push push");
                             return true;
                         }
                     } else {
                         stack0.pop();
                         stack0.push(pushStack_0);
-                        stack1.push(pushStack_1);                   
+                        stack1.push(pushStack_1);      
+                        System.out.println("pop ignore push push");    
+                        return true;
                     }
                 }
             } else {
@@ -60,11 +65,13 @@ public class Transition {
                         stack1.pop();
                         stack0.push(pushStack_0);
                         stack1.push(pushStack_1);
+                        System.out.println("ignore pop push push");             
                         return true;
                     }
                 } else {
                     stack0.push(pushStack_0);
-                    stack1.push(pushStack_1);     
+                    stack1.push(pushStack_1);    
+                    System.out.println("ignore ignore push push");              
                     return true;           
                 }
             }
@@ -77,7 +84,7 @@ public class Transition {
                 currentState.getSymbol().getValue() + ", " +
                 convertLambdaVisual(inputSymbol.getValue()) + ", " +
                 convertLambdaVisual(popStack_0.getValue()) + ", " +
-                convertLambdaVisual(popStack_0.getValue()) + ") = (" +
+                convertLambdaVisual(popStack_1.getValue()) + ") = (" +
                 nextState.getSymbol().getValue() + ", " +
                 convertLambdaVisual(pushStack_0.getValue()) + ", " +
                 convertLambdaVisual(pushStack_1.getValue()) + ")";

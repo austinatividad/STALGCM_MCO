@@ -10,12 +10,12 @@ public class Tape {
     private int currentIndex;
     //Constructor
     public Tape() {
-        currentIndex = 0;
+        currentIndex = -1;
     }
 
     public Tape(ArrayList<Symbol> symbols){
         this.symbols = symbols;
-        this.currentIndex = 0;
+        this.currentIndex = -1;
     }
 
     public Symbol getSymbol(int index){
@@ -23,7 +23,10 @@ public class Tape {
     }
 
     public Symbol getCurrentSymbol() {
-        return symbols.get(currentIndex);
+        if (currentIndex > -1 && currentIndex < symbols.size()) {
+            return symbols.get(currentIndex);
+        }
+        return new Symbol("L");
     }
 
     public int getCurrentIndex() {
@@ -31,12 +34,14 @@ public class Tape {
     }
 
     public void setCurrentIndex(int x) {
+        System.out.println("set tape index: " + currentIndex);
         currentIndex = x;
     }
 
     public void increment() {
+        System.out.println("pre-increment tape: " + currentIndex);
         ++currentIndex;
-        System.out.println("increment tapes");
+        System.out.println("increment tape: " + currentIndex);
     }
 
     public ArrayList<Symbol> getSymbols(){

@@ -2,6 +2,7 @@ package Machine;
 
 import Inputs.*;
 
+import java.awt.Component;
 import java.util.ArrayList;
 
 //Class for creating a 2-STACK PDA machine
@@ -18,8 +19,7 @@ public class Machine {
 
 
     //Attributes for simulation
-    private int currentTape = 0;
-
+    private StateStackItem currentStack;
     private boolean isAccepted = false;
 
     //Constructor
@@ -41,27 +41,41 @@ public class Machine {
     public void stepSim() {
         ArrayList<StateStackItem> currentBranches;
 
-        tape.increment();
-        stack0 = stateStacks.getStack().stack0;
-        stack1 = stateStacks.getStack().stack1;
-        currentBranches = branchCurrentState(stateStacks.getStack().state, tape);
-        for (StateStackItem stateStackItem : currentBranches) {
-            stateStacks.addStack(stateStackItem);
-        }
-        if (tape.getCurrentIndex() == tape.getSymbols().size()-1) {
-            if (stateStacks.getStack().state.isFinal()) {
-                isAccepted = true;
+        if (stateStacks.getStack() != null && !isAccepted) {
+            currentStack = stateStacks.getStack();
+            tape.setCurrentIndex(currentStack.inputIndex);
+            tape.increment();
+            stack0 = currentStack.stack0;
+            stack1 = currentStack.stack1;
+            stateStacks.removeStack();
+            currentBranches = branchCurrentState(currentStack.state, tape);
+            for (StateStackItem stateStackItem : currentBranches) {
+                stateStacks.addStack(stateStackItem);
             }
-        }
-        if ((stack0.isEmpty() && stack1.isEmpty())) {
-            isAccepted = true;
+            currentStack = stateStacks.getStack();
+            stateStacks.printStateStacks();
+            if (tape.getCurrentIndex() >= tape.getSymbols().size()) {
+                if (currentStack.state.isFinal()) {
+                    isAccepted = true;
+                }
+            }
+            //if ((stack0.isEmpty() && stack1.isEmpty())) {
+            //    isAccepted = true;
+            //}
+            System.out.println("State Stacks: " + stateStacks.getStackSize());
         }
     }
 
     private ArrayList<StateStackItem> branchCurrentState(State state, Tape tape) {
         ArrayList<StateStackItem> returnStates = new ArrayList<StateStackItem>();
-        
+        System.out.println("Branching from: " + state.getSymbol().getValue());
         returnStates = state.getTransitions().getValidTransitions(state, tape.getCurrentSymbol(), tape.getCurrentIndex(), stack0, stack1);
+
+        if (returnStates.size() == 0) {
+            returnStates.add(new StateStackItem(state, stack0, stack1, 0));
+        }
+
+        System.out.println("");
 
         return returnStates; 
     }
@@ -105,6 +119,10 @@ public class Machine {
             transitions.addAll(state.getTransitionSet().getTransitions());
         }
         return transitions;
+    }
+
+    public String getCurrentState() {
+        return currentStack.state.getSymbol().getValue();
     }
 
 
