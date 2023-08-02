@@ -13,6 +13,4 @@ public class TransitionSet {
         return transitions.get(index);
     }
 
-
-
 }
