@@ -7,7 +7,11 @@ public class Tape {
     //Attributes
     private ArrayList<Symbol> symbols = new ArrayList<>();
 
+    private int currentIndex;
     //Constructor
+    public Tape() {
+        currentIndex = 0;
+    }
 
     public void addSymbol(Symbol symbol){
         symbols.add(symbol);
@@ -15,6 +19,18 @@ public class Tape {
 
     public Symbol getSymbol(int index){
         return symbols.get(index);
+    }
+
+    public Symbol getCurrentSymbol() {
+        return symbols.get(currentIndex);
+    }
+
+    public void increment() {
+        currentIndex++;
+    }
+
+    public void reset() {
+        currentIndex = 0;
     }
 
     public ArrayList<Symbol> getSymbols(){
