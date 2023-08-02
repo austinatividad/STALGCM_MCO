@@ -24,6 +24,8 @@ public class Machine {
     //Attributes for simulation
     private int currentTape = 0;
 
+    private boolean isAccepted = false;
+
     //Constructor
     public Machine(Alphabet stackAlphabet, Tape tape, ArrayList<State> stateSet, State startState){
         this.tape = tape;
@@ -68,4 +70,15 @@ public class Machine {
                 + stateSet.toString();
     }
 
+    public Tape getTape() {
+        return tape;
+    }
+
+    public String getIsAccepted() {
+        if(isAccepted) {
+            return "Accepted";
+        } else {
+            return "Rejected";
+        }
+    }
 }

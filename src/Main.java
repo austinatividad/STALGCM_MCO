@@ -1,7 +1,7 @@
 
 import Inputs.*;
 import Machine.*;
-
+import View.*;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -193,13 +193,8 @@ public class Main {
 
         System.out.println(machine.toString());
 
-
-
-
-
-
-
-
+        //RUN View
+        View view = new View(machine);
     }  catch (FileNotFoundException e) {
         throw new RuntimeException(e);
     } catch (IOException e) {
