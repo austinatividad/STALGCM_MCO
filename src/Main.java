@@ -14,7 +14,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
     //read file
-
     try {
         FileReader f = new FileReader("./inputs/testing.txt");
         BufferedReader br = new BufferedReader(f);
@@ -153,18 +152,10 @@ public class Main {
             System.out.println(new_trans.toString());
         }
 
-
         //use state tostring for each state
         for (State state : stateSet) {
             System.out.println(state.toString());
         }
-
-
-
-
-
-
-
 
     }  catch (FileNotFoundException e) {
         throw new RuntimeException(e);
