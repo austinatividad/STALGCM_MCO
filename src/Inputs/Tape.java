@@ -13,8 +13,8 @@ public class Tape {
         currentIndex = 0;
     }
 
-    public void addSymbol(Symbol symbol){
-        symbols.add(symbol);
+    public Tape(ArrayList<Symbol> symbols){
+        this.symbols = symbols;
     }
 
     public Symbol getSymbol(int index){
@@ -43,6 +43,18 @@ public class Tape {
 
     public void popSymbol(){
         symbols.remove(symbols.size()-1);
+    }
+
+    public void addSymbol(Symbol symbol) {
+        symbols.add(symbol);
+    }
+
+    public String toString(){
+        String tapeString = "Tape: ";
+        for (Symbol symbol : symbols) {
+            tapeString += symbol.getValue();
+        }
+        return tapeString;
     }
 
 

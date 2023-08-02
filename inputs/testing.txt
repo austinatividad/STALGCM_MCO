@@ -1,17 +1,14 @@
-5
-A B C D
 3
-1 0 0
-1
-X
-6
-A 1 L X L X B
-A 0 X X X X C
-B 1 X L X L B
-C 0 X L X L B
-D 1 X L X L B
-D 1 X X X X B
-A
+A B C
+5
+1 0 1 1 0
 2
-B C
+J K
+3
+A 1 X J X K B
+B 1 J X K X B
+B 1 Z X Z X C
+A
+1
+C
 

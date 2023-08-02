@@ -28,4 +28,12 @@ public class Stack {
     public Symbol seek(){
         return stack.get(stack.size()-1);
     }
+
+    public String toString(){
+        String stackString = "Stack: ";
+        for (Symbol symbol : stack) {
+            stackString += symbol.getValue();
+        }
+        return stackString;
+    }
 }

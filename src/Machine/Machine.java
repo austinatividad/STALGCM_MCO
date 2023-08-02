@@ -12,24 +12,22 @@ import java.util.ArrayList;
 public class Machine {
     //Attributes that contain the formal definition of the machine
     private Tape tape = new Tape();
-    private Alphabet stackAlphabet = new Alphabet();
     private Stack stack_0 = new Stack();
     private Stack stack_1 = new Stack();
-    private State startState;
+
+    private Alphabet stackAlphabet;
 
     private ArrayList<State> stateSet = new ArrayList<>(); //list of all states that contain their transitions
 
 
     //Attributes for simulation
     private int currentTape = 0;
-    private ArrayList<State> currenState;
 
     //Constructor
-    public Machine(Tape tape, Alphabet alphabet, ArrayList<State> stateSet, State startState){
+    public Machine(Alphabet stackAlphabet, Tape tape, ArrayList<State> stateSet){
         this.tape = tape;
-        this.stackAlphabet = alphabet;
         this.stateSet = stateSet;
-        this.startState = startState;
+        this.stackAlphabet = stackAlphabet;
     }
 
     public Stack getStack0() {
@@ -54,6 +52,17 @@ public class Machine {
         return tape.getSymbol(currentTape);
     }
 
-
+    public String toString(){
+        return "PDA DEFINITION:\n"
+                + tape.toString()
+                + "\n"
+                + stack_0.toString()
+                + "\n"
+                + stack_1.toString()
+                + "\n"
+                + stackAlphabet.toString()
+                + "\n"
+                + stateSet.toString();
+    }
 
 }
