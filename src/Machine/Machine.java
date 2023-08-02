@@ -1,11 +1,7 @@
 package Machine;
 
-import Inputs.State;
-import Inputs.Symbol;
-import Inputs.Tape;
-import Inputs.TransitionSet;
-import Inputs.Alphabet;
-import Inputs.Stack;
+import Inputs.*;
+
 import java.util.ArrayList;
 
 //Class for creating a 2-STACK PDA machine
@@ -94,4 +90,22 @@ public class Machine {
             return "Rejected";
         }
     }
+
+    public Stack getStack(int stack) {
+        if(stack == 0) {
+            return stack0;
+        } else {
+            return stack1;
+        }
+    }
+
+    public ArrayList<Transition> getTransitions() {
+        ArrayList<Transition> transitions = new ArrayList<>();
+        for(State state : stateSet) {
+            transitions.addAll(state.getTransitionSet().getTransitions());
+        }
+        return transitions;
+    }
+
+
 }

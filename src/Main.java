@@ -190,7 +190,8 @@ public class Main {
 
         //Initialize Machine
         Machine machine = new Machine(stackAlphabet, tape, stateSet, initialState);
-    
+
+        View view = new View(machine);
         while (true) {
             System.in.read();
             machine.stepSim();
@@ -199,7 +200,7 @@ public class Main {
         //System.out.println(machine.toString());
 
         //RUN View
-        //View view = new View(machine);
+
     }  catch (FileNotFoundException e) {
         throw new RuntimeException(e);
     } catch (IOException e) {

@@ -46,7 +46,7 @@ public class Stack {
     }
 
     public String toString(){
-        String stackString = "Stack: ";
+        String stackString = "";
         for (Symbol symbol : stack) {
             stackString += symbol.getValue();
         }

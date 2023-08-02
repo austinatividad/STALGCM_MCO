@@ -43,4 +43,7 @@ public class TransitionSet {
         return output;
     }
 
+    public ArrayList<Transition> getTransitions(){
+        return transitions;
+    }
 }

@@ -73,12 +73,24 @@ public class Transition {
     }
 
     public String toString(){
-        return "Transition: " + currentState.getSymbol().getValue() + " " +
-                inputSymbol.getValue() + " " +
-                popStack_0.getValue() + " " +
-                pushStack_0.getValue() + " " +
-                popStack_1.getValue() + " " +
-                pushStack_1.getValue() + " " +
-                nextState.getSymbol().getValue();
+        return "δ(" +
+                currentState.getSymbol().getValue() + ", " +
+                convertLambdaVisual(inputSymbol.getValue()) + ", " +
+                convertLambdaVisual(popStack_0.getValue()) + ", " +
+                convertLambdaVisual(popStack_0.getValue()) + ") = (" +
+                nextState.getSymbol().getValue() + ", " +
+                convertLambdaVisual(pushStack_0.getValue()) + ", " +
+                convertLambdaVisual(pushStack_1.getValue()) + ")";
+
+
     }
+
+    private String convertLambdaVisual(String lambda) {
+        if (lambda.equals("L")) {
+            return "λ";
+        } else {
+            return lambda;
+        }
+    }
+
 }

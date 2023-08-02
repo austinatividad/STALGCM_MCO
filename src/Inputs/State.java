@@ -46,6 +46,11 @@ public class State {
             return "Regular";
         }
     }
+
+    public TransitionSet getTransitionSet(){
+        return transitionSet;
+    }
+
     public String toString(){
         return "State: " +
                 symbol.getValue() +
@@ -53,4 +58,5 @@ public class State {
                 "\n" + transitionSet.toString() +
                 "\n";
     }
+
 }

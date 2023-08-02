@@ -1,6 +1,8 @@
 package View;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+
 import Inputs.*;
 import Machine.*;
 
@@ -27,14 +29,28 @@ public class View {
     static JPanel stack0Panel = new JPanel();
     static JPanel stack1Panel = new JPanel();
     static JButton stepButton = new JButton("NEXT STEP");
-    static JPanel transitionPanel = new JPanel();
+    static JFrame transitionWindow = new JFrame("Transition List");
+
+    ArrayList<JPanel> transitionPanels = new ArrayList<>();
+    ArrayList<JLabel> transitionLabels = new ArrayList<>();
 
     //Machine Object
     Machine machine = null;
+
+    //JLabels
+    JLabel tapeLabel = new JLabel();
+    JLabel statusLabel = new JLabel();
+    JLabel stack0Label = new JLabel();
+    JLabel stack1Label = new JLabel();
+    JLabel automataLabel = new JLabel();
+    JLabel transitionLabel = new JLabel();
+
     public View(Machine machine) {
         this.machine = machine;
         initializeComponents();
+
     }
+
 
     private void initializeComponents(){
         createMainWindow();
@@ -48,11 +64,12 @@ public class View {
         createTransitionPanel();
 
         createJLabels();
+        createTransitions(machine.getTransitions());
     }
 
     private void createMainWindow(){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(920, 650);
+        frame.setSize(920, 420);
         frame.getContentPane().setBackground(mainWindow);
         frame.setLayout(null);
         frame.setResizable(false);
@@ -121,27 +138,104 @@ public class View {
         stepButton.setLayout(null);
         frame.add(stepButton);
         stepButton.setVisible(true);
+
+        stepButton.addActionListener(e -> {
+            machine.stepSim(); //TODO: FIX THIS
+            updateView();
+        });
     }
 
     private void createTransitionPanel(){
-        transitionPanel.setLocation(24,372);
-        transitionPanel.setSize(860, 200);
-        transitionPanel.setLayout(null);
-        transitionPanel.setBackground(componentColor);
-        frame.add(transitionPanel);
-        transitionPanel.setVisible(true);
+        FlowLayout layout = new FlowLayout();
+        layout.setHgap(10);
+        layout.setVgap(10);
+        transitionWindow.setSize(400, 420);
+        transitionWindow.setBackground(textBackgroundColor);
+        transitionWindow.setLayout(layout);
+        transitionWindow.setVisible(true);
 
     }
 
     private void createJLabels(){
-        JLabel tapeLabel = new JLabel(machine.getTape().toString());
+        tapeLabel.setText(machine.getTape().toString());
         tapeLabel.setLocation(5, 5);
         tapePanel.add(tapeLabel);
         tapeLabel.setSize(460, 20);
         tapeLabel.setVisible(true);
 
-        JLabel statusLabel = new JLabel("Status: " + machine.getIsAccepted());
+        //TODO: FIX AND SET STRING TO ACTUAL PASSED CURRENT STATE BY MACHINE OBJECT
+        automataLabel.setText("Current State: A");
+        automataLabel.setHorizontalAlignment(JLabel.CENTER);
+        automataLabel.setLocation(5, 80);
+        automataPanel.add(automataLabel);
+        automataLabel.setSize(370, 20);
+        automataLabel.setVisible(true);
+
+
+        statusLabel.setText("Status: " + machine.getIsAccepted());
+        statusLabel.setHorizontalAlignment(JLabel.CENTER);
+        statusLabel.setLocation(5, 5);
+        statusPanel.add(statusLabel);
+        statusLabel.setSize(220, 20);
+        statusLabel.setVisible(true);
+
+        stack0Label.setText("Stack 0: " + machine.getStack(0).toString());
+        stack0Label.setLocation(5, 5);
+        stack0Panel.add(stack0Label);
+        stack0Label.setSize(350, 20);
+        stack0Label.setVisible(true);
+
+        stack1Label.setText("Stack 1: " + machine.getStack(1).toString());
+        stack1Label.setLocation(5, 5);
+        stack1Panel.add(stack1Label);
+        stack1Label.setSize(350, 20);
+        stack1Label.setVisible(true);
     }
 
+    private void createTransitions(ArrayList<Transition> transitions){
+        for (int i=0;i<transitions.size(); i ++){
+            transitionPanels.add(new JPanel());
+            transitionPanels.get(i).setSize(850, 30);
+            transitionPanels.get(i).setPreferredSize(new Dimension(200, 30));
+            transitionPanels.get(i).setBackground(Color.gray.brighter());
+            transitionWindow.add(transitionPanels.get(i));
+
+            transitionLabels.add(new JLabel(transitions.get(i).toString()));
+            transitionLabels.get(i).setLocation(5, 5);
+
+            transitionPanels.get(i).add(transitionLabels.get(i));
+
+        }
+    }
+
+    private void updateView(){
+        System.out.println("update all texts");
+        tapeLabel.setText(machine.getTape().toString());
+
+        statusLabel.setText("Status: " + machine.getIsAccepted());
+        //testing
+        //statusLabel.setText("Status: Accepted");
+        checkStatus();
+
+        stack0Label.setText("Stack 0: " + machine.getStack(0).toString());
+
+        //testing
+        //stack0Label.setText("Stack 0: XXXXXXZ");
+        stack1Label.setText("Stack 1: " + machine.getStack(1).toString());
+        //testing
+        //stack1Label.setText("Stack 1: XXXXXXZ");
+
+        //automataLabel.setText("Current State: " + machine.getCurrentState().getName());
+
+
+    }
+
+    private void checkStatus(){
+        if(statusLabel.getText() == "Status: Accepted") {
+            statusPanel.setBackground(acceptColor);
+        } else {
+            statusPanel.setBackground(rejectColor);
+        }
+    }
 
 }
