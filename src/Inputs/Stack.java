@@ -10,13 +10,11 @@ public class Stack {
 
 
     //Methods only allow push and pop operations
-
     public Stack () {
         stack.add(new Symbol("Z"));
     }
 
     public void push(Symbol symbol){
-
         stack.add(symbol);
     }
 

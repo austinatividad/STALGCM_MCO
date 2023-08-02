@@ -23,4 +23,14 @@ public class Machine {
         this.stateSet = stateSet;
     }
 
+    public Stack getStack0() {
+        return stack_0;
+    }
+
+    public Stack getStack1() {
+        return stack_1;
+    }
+
+     
+
 }
