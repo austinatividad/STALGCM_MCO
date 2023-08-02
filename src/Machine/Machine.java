@@ -1,8 +1,10 @@
 package Machine;
 
+import Inputs.State;
 import Inputs.Tape;
 import Inputs.Alphabet;
 import Inputs.Stack;
+import java.util.ArrayList;
 
 //Class for creating a 2-STACK PDA machine
 public class Machine {
@@ -12,10 +14,13 @@ public class Machine {
     private Stack stack_0 = new Stack();
     private Stack stack_1 = new Stack();
 
+    private ArrayList<State> stateSet = new ArrayList<>(); //list of all states that contain their transitions
+
     //Constructor
-    public Machine(Tape tape, Alphabet alphabet){
+    public Machine(Tape tape, Alphabet alphabet, ArrayList<State> stateSet){
         this.tape = tape;
         this.alphabet = alphabet;
+        this.stateSet = stateSet;
     }
 
 }

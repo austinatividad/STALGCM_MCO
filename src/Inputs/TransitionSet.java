@@ -1,5 +1,4 @@
 package Inputs;
-
 import java.util.ArrayList;
 
 //Stores the set of transitions for a state

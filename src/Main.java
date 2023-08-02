@@ -6,6 +6,7 @@ public class Main {
     Scanner sc = new Scanner(System.in);
 
     //read file
+    File file = new File("");
 
   }
 }
