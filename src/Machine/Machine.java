@@ -42,18 +42,23 @@ public class Machine {
         return stack1;
     }
 
-    public void startSim() {
-        
+    public void stepSim() {
         ArrayList<StateStackItem> currentBranches;
 
-        while (stateStacks.isEmpty() == false || (stack0.isEmpty() && stack0.isEmpty())) {
-            tape.increment();
-            stack0 = stateStacks.getStack().stack0;
-            stack1 = stateStacks.getStack().stack1;
-            currentBranches = branchCurrentState(stateStacks.getStack().state, tape);
-            for (StateStackItem stateStackItem : currentBranches) {
-                stateStacks.addStack(stateStackItem);
+        tape.increment();
+        stack0 = stateStacks.getStack().stack0;
+        stack1 = stateStacks.getStack().stack1;
+        currentBranches = branchCurrentState(stateStacks.getStack().state, tape);
+        for (StateStackItem stateStackItem : currentBranches) {
+            stateStacks.addStack(stateStackItem);
+        }
+        if (tape.getCurrentIndex() == tape.getSymbols().size()-1) {
+            if (stateStacks.getStack().state.isFinal()) {
+                isAccepted = true;
             }
+        }
+        if ((stack0.isEmpty() && stack1.isEmpty())) {
+            isAccepted = true;
         }
     }
 
