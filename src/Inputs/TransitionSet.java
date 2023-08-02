@@ -13,4 +13,12 @@ public class TransitionSet {
         return transitions.get(index);
     }
 
+    public String toString() {
+        String output = "";
+        for (Transition transition : transitions) {
+            output += transition.toString() + "\n";
+        }
+        return output;
+    }
+
 }

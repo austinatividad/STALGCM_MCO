@@ -1,13 +1,15 @@
 3 /* number of states */
 A B C /* state names */
+5 /* size of input tape */
+0 1 0 1 0 /* input tape */
 4 /* number of stack symbols */
 a b c d /* symbol names */
 3 /* number of transitions */
 
 /* current state, pop stack1, push stack1, pop stack2, push stack2, next state */
-A L L L L B /* transition functions, L will be a const for lambda */
-B L a b L C
-B a L L L B
+A 1 L L L L B /* transition functions, L will be a const for lambda */
+B 0 L a b L C
+B 1 a L L L B
 A /* start state */
 2 /* number of final states */
 B C /* final states */

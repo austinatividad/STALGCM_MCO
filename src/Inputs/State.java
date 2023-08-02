@@ -6,13 +6,32 @@ public class State {
     private boolean isInitial;
     private boolean isFinal;
 
-    private TransitionSet transitionSet;
+    private TransitionSet transitionSet = new TransitionSet();
 
     //Constructor
-    public State(Symbol symbol, boolean isInitial, boolean isFinal, TransitionSet transitionSet){
+    public State(Symbol symbol, boolean isInitial, boolean isFinal){
         this.symbol = symbol;
         this.isInitial = isInitial;
         this.isFinal = isFinal;
-        this.transitionSet = transitionSet;
+    }
+
+    public boolean isInitial(){
+        return isInitial;
+    }
+
+    public boolean isFinal(){
+        return isFinal;
+    }
+
+    public Symbol getSymbol(){
+        return symbol;
+    }
+
+    public void addTransition(Transition transition){
+        transitionSet.addTransition(transition);
+    }
+
+    public String toString(){
+        return "State: " + symbol.getValue() + " isInitial: " + isInitial + " isFinal: " + isFinal + "\n" + transitionSet.toString() + "\n";
     }
 }

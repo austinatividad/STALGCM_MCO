@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Machine {
     //Attributes that contain the formal definition of the machine
     private Tape tape = new Tape();
-    private Alphabet alphabet = new Alphabet();
+    private Alphabet stackAlphabet = new Alphabet();
     private Stack stack_0 = new Stack();
     private Stack stack_1 = new Stack();
 
@@ -19,7 +19,7 @@ public class Machine {
     //Constructor
     public Machine(Tape tape, Alphabet alphabet, ArrayList<State> stateSet){
         this.tape = tape;
-        this.alphabet = alphabet;
+        this.stackAlphabet = alphabet;
         this.stateSet = stateSet;
     }
 

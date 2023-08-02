@@ -35,4 +35,14 @@ public class Transition {
     public Transition getTransition(){
         return this;
     }
+
+    public String toString(){
+        return "Transition: " + currentState.getSymbol().getValue() + " " +
+                inputSymbol.getValue() + " " +
+                popStack_0.getValue() + " " +
+                pushStack_0.getValue() + " " +
+                popStack_1.getValue() + " " +
+                pushStack_1.getValue() + " " +
+                nextState.getSymbol().getValue();
+    }
 }
