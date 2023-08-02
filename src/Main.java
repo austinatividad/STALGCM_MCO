@@ -14,7 +14,7 @@ public class Main {
 
     //read file
     try {
-        FileReader f = new FileReader("./inputs/testing.txt");
+        FileReader f = new FileReader("../inputs/testing.txt");
         BufferedReader br = new BufferedReader(f);
         State initialState = new State(null, false, false);
 
