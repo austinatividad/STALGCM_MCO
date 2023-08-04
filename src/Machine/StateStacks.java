@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Inputs.Stack;
 import Inputs.State;
+import Inputs.Transition;
 
 public class StateStacks {
     
@@ -15,8 +16,8 @@ public class StateStacks {
         return stateStack.isEmpty();
     }
 
-    public void addStack(State state, Stack stack0, Stack stack1, int inputIndex) {
-        stateStack.add(new StateStackItem(state, stack0, stack1, inputIndex));
+    public void addStack(State state, Transition transition, Stack stack0, Stack stack1, int inputIndex) {
+        stateStack.add(new StateStackItem(state, transition, stack0, stack1, inputIndex));
         //printStackSeq(stateStack.size()-1);
     }
 

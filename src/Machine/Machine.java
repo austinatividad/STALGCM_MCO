@@ -30,7 +30,7 @@ public class Machine {
         this.tape = tape;
         this.stateSet = stateSet;
         this.stackAlphabet = stackAlphabet;
-        stateStacks.addStack(startState, new Stack(stack0), new Stack(stack1), -1);
+        stateStacks.addStack(startState, new Transition(), new Stack(stack0), new Stack(stack1), -1);
     }
 
     public Stack getStack0() {
@@ -76,7 +76,7 @@ public class Machine {
         returnStates = state.getTransitions().getValidTransitions(state, tape.getCurrentSymbol(), tape.getCurrentIndex(), stack0, stack1);
 
         if (returnStates.size() == 0) {
-            returnStates.add(new StateStackItem(state, stack0, stack1, 0));
+            returnStates.add(new StateStackItem(state, new Transition(), stack0, stack1, 0));
         }
 
         System.out.println("");

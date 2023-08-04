@@ -31,6 +31,9 @@ public class Transition {
         this.pushStack_1 = pushStack_1;
         this.nextState = nextState;
     }
+    public Transition() {
+        
+    }
 
     public Transition getTransition(){
         return this;
