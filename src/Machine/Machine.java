@@ -162,6 +162,7 @@ public class Machine {
         String string = new String();
 
         for (Symbol symbol : transitionLog) {
+            
             string = String.join(">", symbol.getValue());
         }
 
