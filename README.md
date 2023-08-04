@@ -7,6 +7,7 @@ Made by [Josh Austin Mikhail T. Natividad](https://github.com/austinatividad) an
 - [Formal Definition Instructions](#formal-definition-instructions)
 - [UI Design and Navigation](#ui-design-and-navigation)
 - [Sample Input and Output](#sample-input-and-output)
+- [Running the Program](#running-the-program)
 
 
 
@@ -158,7 +159,8 @@ D
 **3rd case: A machine that uses both stacks**
 
 
-A machine that accepts the language {a^n b^m, n>=1 ∧ m>=1 ∧ m = 2n} using a 2-Stack PDA
+A machine that accepts the language {a^n b^m, n>=1 ∧ m>=1 ∧ m = 2n} <br>
+Using Stack 0 and Stack 1, fully utilizing the machine.
 
 ```bash
 4
@@ -179,40 +181,5 @@ A
 D
 ```
 
-A machine that acceptst
-
-
-
-## Installation
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-```bash
-pip install foobar
-```
-
-## Usage
-
-```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
-```
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+## Running the Program
+To run the program, simply run [Main.java](./src/Main.java) in your IDE of choice. <br>
