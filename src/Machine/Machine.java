@@ -25,7 +25,7 @@ public class Machine {
     private Transition currentTransition;
     private int stepCount = 0;
 
-    private ArrayList<Symbol> transitionLog;
+    private ArrayList<Symbol> transitionLog = new ArrayList<Symbol>();
 
     //Constructor
     public Machine(Alphabet stackAlphabet, Tape tape, ArrayList<State> stateSet, State startState){
@@ -161,6 +161,7 @@ public class Machine {
 
         String string = new String();
 
+
         for (Symbol symbol : transitionLog) {
             
             string = String.join(">", symbol.getValue());
@@ -168,4 +169,10 @@ public class Machine {
 
         return string;
     }
+
+    public StateStacks getStateStacks() {
+        return stateStacks;
+    }
+
+
 }
