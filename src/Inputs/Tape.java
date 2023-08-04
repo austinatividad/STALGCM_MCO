@@ -68,8 +68,10 @@ public class Tape {
         return tapeString;
     }
 
+    public String currentIndex(){
+        return "Tape Index: " + currentIndex;
+    }
 
-    //private method for converting
 
 
 

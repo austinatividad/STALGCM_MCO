@@ -22,6 +22,9 @@ public class Machine {
     private StateStackItem currentStack;
     private boolean isAccepted = false;
 
+    private Transition currentTransition;
+    private int stepCount = 0;
+
     //Constructor
     public Machine(Alphabet stackAlphabet, Tape tape, ArrayList<State> stateSet, State startState){
         this.tape = tape;
@@ -42,6 +45,7 @@ public class Machine {
         ArrayList<StateStackItem> currentBranches;
 
         if (stateStacks.getStack() != null && !isAccepted) {
+            stepCount++;
             currentStack = stateStacks.getStack();
             tape.setCurrentIndex(currentStack.inputIndex);
             tape.increment();
@@ -121,9 +125,31 @@ public class Machine {
         return transitions;
     }
 
-    public String getCurrentState() {
-        return currentStack.state.getSymbol().getValue();
+    public int getStepCount() {
+        return stepCount;
     }
 
+    public String getCurrentState() {
+        String result = "";
+        if(currentStack.state.isInitial()){
+            result += "Initial State: ";
+        } else if(currentStack.state.isFinal()){
+            result += "Final State: ";
+        } else {
+            result += "Current State: ";
+        }
+        return result + currentStack.state.getSymbol().getValue();
+    }
 
+    public ArrayList<String> getStateStackTransitions() {
+        //get top of Statestack
+        String result = "";
+        StateStackItem temp = stateStacks.getStack();
+
+        ArrayList<String> transitions = new ArrayList<>();
+        for(Transition transition : temp.state.getTransitionSet().getTransitions()) {
+            transitions.add(transition.toString());
+        }
+        return transitions;
+    }
 }

@@ -15,4 +15,5 @@ public class StateStackItem {
         this.stack1 = stack1;
         this.inputIndex = inputIndex;
     }
+
 }

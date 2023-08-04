@@ -7,7 +7,7 @@ import Inputs.State;
 
 public class StateStacks {
     
-    private ArrayList<StateStackItem> stateStack = new ArrayList<StateStackItem>();
+    private ArrayList<StateStackItem> stateStack = new ArrayList<>();
 
     public StateStacks() {}
 
@@ -60,6 +60,7 @@ public class StateStacks {
     public void removeStack() {
         stateStack.remove(stateStack.size() - 1);
     }
+
 }
 
 

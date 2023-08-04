@@ -61,4 +61,5 @@ public class TransitionSet {
     public ArrayList<Transition> getTransitions(){
         return transitions;
     }
+
 }

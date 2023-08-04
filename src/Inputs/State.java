@@ -1,4 +1,5 @@
 package Inputs;
+import java.util.ArrayList;
 
 public class State {
     //Attributes
@@ -57,6 +58,12 @@ public class State {
                 " Type: " + stateType() +
                 "\n" + transitionSet.toString() +
                 "\n";
+    }
+
+    public ArrayList<String> toStringList(){
+        ArrayList<String> output = new ArrayList<>();
+        output.add(transitionSet.toString());
+        return output;
     }
 
 }

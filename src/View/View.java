@@ -1,7 +1,9 @@
 package View;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import Inputs.*;
 import Machine.*;
@@ -26,17 +28,20 @@ public class View {
     static JPanel mainPanel = new JPanel();
     static JPanel tapePanel = new JPanel();
     static JPanel automataPanel = new JPanel();
+
     static JPanel statusPanel = new JPanel();
     static JPanel stack0Panel = new JPanel();
     static JPanel stack1Panel = new JPanel();
     static JButton stepButton = new JButton("NEXT STEP");
     static JFrame transitionWindow = new JFrame("Transition List");
+    static JPanel stepCountPanel = new JPanel();
+    static JPanel tapeIndexPanel = new JPanel();
 
     ArrayList<JPanel> transitionPanels = new ArrayList<>();
     ArrayList<JLabel> transitionLabels = new ArrayList<>();
 
     //Machine Object
-    Machine machine = null;
+    public Machine machine = null;
 
     //JLabels
     JLabel tapeLabel = new JLabel();
@@ -45,10 +50,18 @@ public class View {
     JLabel stack1Label = new JLabel();
     JLabel automataLabel = new JLabel();
     JLabel transitionLabel = new JLabel();
+    JLabel stepCountLabel = new JLabel();
+
+    JLabel tapeIndexLabel = new JLabel();
+
+
+
 
     public View(Machine machine) {
         this.machine = machine;
         initializeComponents();
+
+
 
     }
 
@@ -63,18 +76,29 @@ public class View {
         createStack1Panel();
         createStepButton();
         createTransitionPanel();
+        createStepCountPanel();
+        createTapeIndexPanel();
 
         createJLabels();
         createTransitions(machine.getTransitions());
+
+
+        frame.revalidate();
+        frame.repaint();
+
+        transitionWindow.revalidate();
+        transitionWindow.repaint();
     }
 
     private void createMainWindow(){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(920, 420);
+        frame.setSize(920, 390);
         frame.getContentPane().setBackground(mainWindow);
+        frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         frame.setResizable(false);
         frame.setVisible(true);
+
     }
 
     private void createMainPanel(){
@@ -143,7 +167,7 @@ public class View {
         stepButton.addActionListener(e -> {
             System.out.println("------------------");
             System.out.println("Button Presses: " + ++ctr + "\n");
-            machine.stepSim(); //TODO: FIX THIS
+            machine.stepSim();
             updateView();
         });
     }
@@ -152,10 +176,46 @@ public class View {
         FlowLayout layout = new FlowLayout();
         layout.setHgap(10);
         layout.setVgap(10);
-        transitionWindow.setSize(400, 420);
-        transitionWindow.setBackground(textBackgroundColor);
+        transitionWindow.setSize(280, 390);
+        transitionWindow.getContentPane().setBackground(mainWindow);
         transitionWindow.setLayout(layout);
+        transitionWindow.setLocation(frame.getX() + frame.getWidth(), frame.getY());
         transitionWindow.setVisible(true);
+
+    }
+
+    private void createStepCountPanel(){
+        stepCountPanel.setSize(160, 26);
+        stepCountPanel.setBackground(componentColor);
+        stepCountPanel.setLocation(530, 197);
+        stepCountPanel.setLayout(null);
+        frame.add(stepCountPanel);
+        stepCountPanel.setVisible(true);
+
+        stepCountLabel.setText("Step Count: " + machine.getStepCount());
+        stepCountLabel.setHorizontalAlignment(JLabel.CENTER);
+        stepCountLabel.setLocation(5, 3);
+        stepCountPanel.add(stepCountLabel);
+        stepCountLabel.setSize(167, 20);
+        stepCountLabel.setVisible(true);
+
+    }
+
+    private void createTapeIndexPanel(){
+        tapeIndexPanel.setSize(160, 26);
+        tapeIndexPanel.setBackground(componentColor);
+        tapeIndexPanel.setLocation(724, 197);
+        tapeIndexPanel.setLayout(null);
+        frame.add(tapeIndexPanel);
+        tapeIndexPanel.setVisible(true);
+
+        tapeIndexLabel.setText(machine.getTape().currentIndex());
+        tapeIndexLabel.setHorizontalAlignment(JLabel.CENTER);
+        tapeIndexLabel.setLocation(5, 3);
+        tapeIndexPanel.add(tapeIndexLabel);
+        tapeIndexLabel.setSize(167, 20);
+        tapeIndexLabel.setVisible(true);
+
 
     }
 
@@ -167,11 +227,21 @@ public class View {
         tapeLabel.setVisible(true);
 
         //TODO: FIX AND SET STRING TO ACTUAL PASSED CURRENT STATE BY MACHINE OBJECT
-        automataLabel.setText("Current State: A");
+        automataLabel.setText("<html>" +
+                "<body>" +
+                "<center>" +
+                "Make sure that /inputs/testing.txt is <br>" +
+                "already set to your formal definition.<br><br>" +
+                "Please refer to README.md for " +
+                "the formal definition.<br><br>" +
+                "Click NEXT STEP to start the simulation." +
+                "</center>" +
+                "</body>" +
+                "</html>");
         automataLabel.setHorizontalAlignment(JLabel.CENTER);
-        automataLabel.setLocation(5, 80);
+        automataLabel.setLocation(5, 40);
         automataPanel.add(automataLabel);
-        automataLabel.setSize(370, 20);
+        automataLabel.setSize(370, 100);
         automataLabel.setVisible(true);
 
 
@@ -183,13 +253,13 @@ public class View {
         statusLabel.setVisible(true);
 
         stack0Label.setText("Stack 0: " + machine.getStack(0).toString());
-        stack0Label.setLocation(5, 5);
+        stack0Label.setLocation(5, 23);
         stack0Panel.add(stack0Label);
         stack0Label.setSize(350, 20);
         stack0Label.setVisible(true);
 
         stack1Label.setText("Stack 1: " + machine.getStack(1).toString());
-        stack1Label.setLocation(5, 5);
+        stack1Label.setLocation(5, 23);
         stack1Panel.add(stack1Label);
         stack1Label.setSize(350, 20);
         stack1Label.setVisible(true);
@@ -198,9 +268,9 @@ public class View {
     private void createTransitions(ArrayList<Transition> transitions){
         for (int i=0;i<transitions.size(); i ++){
             transitionPanels.add(new JPanel());
-            transitionPanels.get(i).setSize(850, 30);
+            transitionPanels.get(i).setSize(200, 30);
             transitionPanels.get(i).setPreferredSize(new Dimension(200, 30));
-            transitionPanels.get(i).setBackground(Color.gray.brighter());
+            transitionPanels.get(i).setBackground(transitionComponentColor);
             transitionWindow.add(transitionPanels.get(i));
 
             transitionLabels.add(new JLabel(transitions.get(i).toString()));
@@ -228,15 +298,44 @@ public class View {
         //testing
         //stack1Label.setText("Stack 1: XXXXXXZ");
 
-        automataLabel.setText("Current State: " + machine.getCurrentState());
+        stepCountLabel.setText("Step Count: " + machine.getStepCount());
+        automataLabel.setText(machine.getCurrentState());
+
+        tapeIndexLabel.setText(machine.getTape().currentIndex());
+
+        highlightTransitions();
+        checkstate();
 
     }
 
     private void checkStatus(){
-        if(statusLabel.getText() == "Status: Accepted") {
-            statusPanel.setBackground(acceptColor);
-        } else {
+        if(Objects.equals(statusLabel.getText(), "Status: Rejected")) {
             statusPanel.setBackground(rejectColor);
+        } else {
+            statusPanel.setBackground(acceptColor);
+        }
+    }
+
+    private void highlightTransitions(){
+        ArrayList<String> cur_transitions;
+        cur_transitions = machine.getStateStackTransitions();
+
+        for (int i=0;i<transitionPanels.size(); i ++){
+            if (cur_transitions.contains(transitionLabels.get(i).getText())){
+                transitionPanels.get(i).setBackground(transitionHighlightedColor);
+            } else {
+                transitionPanels.get(i).setBackground(transitionComponentColor);
+            }
+        }
+    }
+
+    private void checkstate(){
+        if (automataLabel.getText().contains("Initial")) {
+            automataLabel.setForeground(Color.CYAN.darker());
+        } else if (automataLabel.getText().contains("Final")) {
+            automataLabel.setForeground(acceptColor.darker());
+        } else {
+            automataLabel.setForeground(Color.black);
         }
     }
 
