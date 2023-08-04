@@ -34,9 +34,18 @@ public class Stack {
     }
 
     public void push(Symbol symbol){
+        if (symbol.getValue().length() > 1) {
+            for (int i = 0; i < symbol.getValue().length(); i++) {
+                stack.add(new Symbol(symbol.getValue().substring(i, i+1)));
+            }
+            return;
+        }
+
         if (!symbol.getValue().equals("L")) {
             stack.add(symbol);
         }
+        //handle multi-line input by separating into separate stack.add calls
+
     }
 
     public Symbol pop(){

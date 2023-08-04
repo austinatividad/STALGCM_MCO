@@ -177,16 +177,19 @@ public class View {
             }
             try {
                 updateView();
+
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Rejected.");
                 stepButton.setEnabled(false);
             }
 
             if(machine.getIsAccepted() == "Accepted") {
+                updateView();
                 JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Accepted.");
                 stepButton.setText("Restart Software to Simulate Again");
                 stepButton.setEnabled(false);
             }
+
 
         });
     }
@@ -251,7 +254,7 @@ public class View {
         frame.add(transitionLogPanel);
         transitionLogPanel.setVisible(true);
 
-        transitionLogLabel.setLocation(5, 0);
+        transitionLogLabel.setLocation(15, 0);
         transitionLogPanel.add(transitionLogLabel);
         transitionLogLabel.setSize(349, 110);
         transitionLogLabel.setVisible(true);
@@ -268,7 +271,7 @@ public class View {
         automataLabel.setText("<html>" +
                 "<body style=''>" +
                 "<center>" +
-                "Make sure that /inputs/testing.txt is <br>" +
+                "Make sure that /inputs/machine.txt is <br>" +
                 "already set to your formal definition.<br><br>" +
                 "Please refer to README.md for " +
                 "the formal definition.<br><br>" +
@@ -277,7 +280,7 @@ public class View {
                 "</body>" +
                 "</html>");
         automataLabel.setHorizontalAlignment(JLabel.CENTER);
-        automataLabel.setLocation(5, 40);
+        automataLabel.setLocation(6, 40);
         automataPanel.add(automataLabel);
         automataLabel.setSize(370, 100);
         automataLabel.setVisible(true);
@@ -345,7 +348,7 @@ public class View {
 
         transitionLogLabel.setText(
                 "<html>"+
-                        "<body style='width:auto'>"+
+                        "<body style='width: auto '>"+
                         machine.getTransitionLog()+
                         "</body>"+
                 "</html>"

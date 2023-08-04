@@ -1,4 +1,3 @@
-
 import Inputs.*;
 import Machine.*;
 import View.*;
@@ -14,7 +13,7 @@ public class Main {
 
     //read file
     try {
-        FileReader f = new FileReader("./inputs/testing.txt");
+        FileReader f = new FileReader("./inputs/machine.txt");
         BufferedReader br = new BufferedReader(f);
         State initialState = new State(null, false, false);
 

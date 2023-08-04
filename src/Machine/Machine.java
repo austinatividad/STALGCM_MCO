@@ -170,7 +170,7 @@ public class Machine {
                 if(transitionLog.size()-i == 1) {
                     string += transitionLog.get(i).getValue();
                 } else {
-                    string += transitionLog.get(i).getValue() + " ⟶ ";
+                    string += transitionLog.get(i).getValue() + " ⮕ ";
                 }
             }
         }

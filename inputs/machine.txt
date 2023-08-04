@@ -1,0 +1,16 @@
+4
+A B C D
+6
+a a b b b b c c
+1
+X
+6
+A a L XX L X A
+A L L L L L B
+B b X L L L B
+B L L L L L C
+C c L L X L C
+C L Z L Z L D
+A
+1
+D
