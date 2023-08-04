@@ -58,8 +58,8 @@ It is assumed that [machine.txt](./inputs/machine.txt) is always in the correct 
 ### Components
 
 - [machine.txt](./inputs/machine.txt) - The file that contains the machine definition.
-- [Main](./main.java) - The main file that runs the program.
-- [Machine](./Machine.java) - The class that contains the machine definition and the methods to run the machine.
+- [Main](./src/main.java) - The main file that runs the program.
+- [Machine](./src/Machine.java) - The class that contains the machine definition and the methods to run the machine.
 - [View](./View) - Folder that contains the UI files.
 - [Inputs](./inputs) - Folder that contains all the classes for defining the machine.
 
