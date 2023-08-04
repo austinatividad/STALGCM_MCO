@@ -163,8 +163,8 @@ A machine that accepts the language {a^n b^m, n>=1 ∧ m>=1 ∧ m = 2n} using a 
 ```bash
 4
 A B C D
-6
-a a b b b b c c
+6                   #change to test other inputs
+a a b b b b c c     #change to test other inputs
 1
 X
 6
