@@ -25,6 +25,8 @@ public class Machine {
     private Transition currentTransition;
     private int stepCount = 0;
 
+    private ArrayList<Symbol> transitionLog;
+
     //Constructor
     public Machine(Alphabet stackAlphabet, Tape tape, ArrayList<State> stateSet, State startState){
         this.tape = tape;
@@ -47,6 +49,7 @@ public class Machine {
         if (stateStacks.getStack() != null && !isAccepted) {
             stepCount++;
             currentStack = stateStacks.getStack();
+            transitionLog.add(currentStack.state.getSymbol());
             tape.setCurrentIndex(currentStack.inputIndex);
             tape.increment();
             stack0 = currentStack.stack0;
@@ -75,6 +78,7 @@ public class Machine {
         System.out.println("Branching from: " + state.getSymbol().getValue());
         returnStates = state.getTransitions().getValidTransitions(state, tape.getCurrentSymbol(), tape.getCurrentIndex(), stack0, stack1);
 
+        //Adds itself again because there are no transitions
         if (returnStates.size() == 0) {
             returnStates.add(new StateStackItem(state, new Transition(), stack0, stack1, 0));
         }
@@ -151,5 +155,16 @@ public class Machine {
             transitions.add(transition.toString());
         }
         return transitions;
+    }
+
+    public String getTransitionLog() {
+
+        String string = new String();
+
+        for (Symbol symbol : transitionLog) {
+            string = String.join(">", symbol.getValue());
+        }
+
+        return string;
     }
 }
