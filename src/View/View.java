@@ -16,6 +16,7 @@ public class View {
     static Color stackComponentColor = new Color(255,249,193);
     static Color transitionComponentColor = new Color(239,239,239);
     static Color transitionHighlightedColor = new Color(226,255,252);
+    static Color transitionCurrentColor = new Color(255, 226, 250);
     static Color acceptColor = new Color(000,255,000);
     static Color rejectColor = new Color(255, 000, 000);
 
@@ -165,10 +166,25 @@ public class View {
         stepButton.setVisible(true);
 
         stepButton.addActionListener(e -> {
-            System.out.println("------------------");
-            System.out.println("Button Presses: " + ++ctr + "\n");
-            machine.stepSim();
-            updateView();
+            try {
+                machine.stepSim();
+            } catch(Error err) {
+                JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Rejected.");
+                stepButton.setEnabled(false);
+            }
+            try {
+                updateView();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Rejected.");
+                stepButton.setEnabled(false);
+            }
+
+            if(machine.getIsAccepted() == "Accepted") {
+                JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Accepted.");
+                stepButton.setText("Restart Software to Simulate Again");
+                stepButton.setEnabled(false);
+            }
+
         });
     }
 
@@ -194,9 +210,9 @@ public class View {
 
         stepCountLabel.setText("Step Count: " + machine.getStepCount());
         stepCountLabel.setHorizontalAlignment(JLabel.CENTER);
-        stepCountLabel.setLocation(5, 3);
+        stepCountLabel.setLocation(0, 3);
         stepCountPanel.add(stepCountLabel);
-        stepCountLabel.setSize(167, 20);
+        stepCountLabel.setSize(160, 20);
         stepCountLabel.setVisible(true);
 
     }
@@ -211,9 +227,9 @@ public class View {
 
         tapeIndexLabel.setText(machine.getTape().currentIndex());
         tapeIndexLabel.setHorizontalAlignment(JLabel.CENTER);
-        tapeIndexLabel.setLocation(5, 3);
+        tapeIndexLabel.setLocation(0, 3);
         tapeIndexPanel.add(tapeIndexLabel);
-        tapeIndexLabel.setSize(167, 20);
+        tapeIndexLabel.setSize(160, 20);
         tapeIndexLabel.setVisible(true);
 
 
@@ -282,6 +298,8 @@ public class View {
     }
 
     private void updateView(){
+        System.out.println("TransitionLog: ");
+        System.out.println(machine.getTransitionLog());
         System.out.println("update all texts");
         tapeLabel.setText(machine.getTape().toString());
 
@@ -327,13 +345,28 @@ public class View {
                 transitionPanels.get(i).setBackground(transitionComponentColor);
             }
         }
-    }
+
+        Transition current_transition = machine.getStateStacks().getStack().transition;
+        System.out.println(current_transition.toString());
+
+        for (int i=0;i<transitionPanels.size(); i ++){
+            if (current_transition.toString().equals(transitionLabels.get(i).getText())){
+                transitionPanels.get(i).setBackground(transitionCurrentColor);
+            }
+        }
+
+        }
 
     private void checkstate(){
         if (automataLabel.getText().contains("Initial")) {
             automataLabel.setForeground(Color.CYAN.darker());
         } else if (automataLabel.getText().contains("Final")) {
-            automataLabel.setForeground(acceptColor.darker());
+            if(machine.getIsAccepted() == "Accepted"){
+                automataLabel.setForeground(acceptColor.darker());
+            } else {
+                automataLabel.setForeground(rejectColor.darker());
+            }
+
         } else {
             automataLabel.setForeground(Color.black);
         }
