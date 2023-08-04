@@ -1,7 +1,6 @@
 package View;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -37,6 +36,8 @@ public class View {
     static JFrame transitionWindow = new JFrame("Transition List");
     static JPanel stepCountPanel = new JPanel();
     static JPanel tapeIndexPanel = new JPanel();
+    static JPanel transitionLogPanel = new JPanel();
+
 
     ArrayList<JPanel> transitionPanels = new ArrayList<>();
     ArrayList<JLabel> transitionLabels = new ArrayList<>();
@@ -55,6 +56,7 @@ public class View {
 
     JLabel tapeIndexLabel = new JLabel();
 
+    JLabel transitionLogLabel = new JLabel();
 
 
 
@@ -79,6 +81,7 @@ public class View {
         createTransitionPanel();
         createStepCountPanel();
         createTapeIndexPanel();
+        createTransitionLogPanel();
 
         createJLabels();
         createTransitions(machine.getTransitions());
@@ -140,7 +143,7 @@ public class View {
     }
 
     private void createStack0Panel(){
-        stack0Panel.setSize(354,70);
+        stack0Panel.setSize(354,40);
         stack0Panel.setBackground(stackComponentColor);
         stack0Panel.setLocation(530, 24);
         stack0Panel.setLayout(null);
@@ -149,9 +152,9 @@ public class View {
     }
 
     private void createStack1Panel(){
-        stack1Panel.setSize(354,70);
+        stack1Panel.setSize(354,40);
         stack1Panel.setBackground(stackComponentColor);
-        stack1Panel.setLocation(530, 115);
+        stack1Panel.setLocation(530, 74);
         stack1Panel.setLayout(null);
         frame.add(stack1Panel);
         stack1Panel.setVisible(true);
@@ -203,7 +206,7 @@ public class View {
     private void createStepCountPanel(){
         stepCountPanel.setSize(160, 26);
         stepCountPanel.setBackground(componentColor);
-        stepCountPanel.setLocation(530, 197);
+        stepCountPanel.setLocation(530, 123);
         stepCountPanel.setLayout(null);
         frame.add(stepCountPanel);
         stepCountPanel.setVisible(true);
@@ -220,7 +223,7 @@ public class View {
     private void createTapeIndexPanel(){
         tapeIndexPanel.setSize(160, 26);
         tapeIndexPanel.setBackground(componentColor);
-        tapeIndexPanel.setLocation(724, 197);
+        tapeIndexPanel.setLocation(724, 123);
         tapeIndexPanel.setLayout(null);
         frame.add(tapeIndexPanel);
         tapeIndexPanel.setVisible(true);
@@ -235,6 +238,25 @@ public class View {
 
     }
 
+    private void createTransitionLogPanel(){
+
+        stepButton.setLocation(530, 285);
+        stepButton.setSize(354, 32);
+
+
+        transitionLogPanel.setSize(354, 110);
+        transitionLogPanel.setBackground(componentColor);
+        transitionLogPanel.setLocation(530, 160);
+        transitionLogPanel.setLayout(null);
+        frame.add(transitionLogPanel);
+        transitionLogPanel.setVisible(true);
+
+        transitionLogLabel.setLocation(5, 0);
+        transitionLogPanel.add(transitionLogLabel);
+        transitionLogLabel.setSize(349, 110);
+        transitionLogLabel.setVisible(true);
+    }
+
     private void createJLabels(){
         tapeLabel.setText(machine.getTape().toString());
         tapeLabel.setLocation(5, 5);
@@ -244,7 +266,7 @@ public class View {
 
         //TODO: FIX AND SET STRING TO ACTUAL PASSED CURRENT STATE BY MACHINE OBJECT
         automataLabel.setText("<html>" +
-                "<body>" +
+                "<body style=''>" +
                 "<center>" +
                 "Make sure that /inputs/testing.txt is <br>" +
                 "already set to your formal definition.<br><br>" +
@@ -269,13 +291,13 @@ public class View {
         statusLabel.setVisible(true);
 
         stack0Label.setText("Stack 0: " + machine.getStack(0).toString());
-        stack0Label.setLocation(5, 23);
+        stack0Label.setLocation(5, 8);
         stack0Panel.add(stack0Label);
         stack0Label.setSize(350, 20);
         stack0Label.setVisible(true);
 
         stack1Label.setText("Stack 1: " + machine.getStack(1).toString());
-        stack1Label.setLocation(5, 23);
+        stack1Label.setLocation(5, 8);
         stack1Panel.add(stack1Label);
         stack1Label.setSize(350, 20);
         stack1Label.setVisible(true);
@@ -320,6 +342,14 @@ public class View {
         automataLabel.setText(machine.getCurrentState());
 
         tapeIndexLabel.setText(machine.getTape().currentIndex());
+
+        transitionLogLabel.setText(
+                "<html>"+
+                        "<body style='width:auto'>"+
+                        machine.getTransitionLog()+
+                        "</body>"+
+                "</html>"
+        );
 
         highlightTransitions();
         checkstate();

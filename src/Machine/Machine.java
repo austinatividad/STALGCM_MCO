@@ -161,11 +161,20 @@ public class Machine {
 
         String string = new String();
 
-
-        for (Symbol symbol : transitionLog) {
-            
-            string = String.join(">", symbol.getValue());
+        if(transitionLog.size() == 0) {
+            return "";
+        } else if (transitionLog.size() == 1){
+            return transitionLog.get(0).getValue();
+        } else {
+            for(int i = 0; i < transitionLog.size() ; i++) {
+                if(transitionLog.size()-i == 1) {
+                    string += transitionLog.get(i).getValue();
+                } else {
+                    string += transitionLog.get(i).getValue() + " ⟶ ";
+                }
+            }
         }
+
 
         return string;
     }
