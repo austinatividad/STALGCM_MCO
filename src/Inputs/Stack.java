@@ -48,15 +48,33 @@ public class Stack {
 
     }
 
-    public Symbol pop(){
-        Symbol symbol = stack.get(stack.size()-1);
-        stack.remove(stack.size()-1);
-        return symbol;
+    public void pop(Symbol popsymbol){
+        System.out.println("Popping " + popsymbol.getValue() + " from stack");
+        if(popsymbol.getValue().equals("L")){
+            return;
+        }
+
+        //use a for loop to pop multiple symbols
+        //assumed to work without validation because of the validTransition method in Transition.java
+        for (int i = 0; i < popsymbol.getValue().length(); i++) {
+            stack.remove(stack.size()-1);
+        }
     }
 
     //seek method for testing purposes
-    public Symbol seek(){
-        return stack.get(stack.size()-1);
+    public ArrayList<Symbol> getLastSymbols(int length){
+        //returns the length amount of symbols from the end of the arraylist
+        ArrayList<Symbol> symbols = new ArrayList<>();
+        if(stack == null){
+            return symbols;
+        }
+        if (stack.size() == 0 || stack.size() == 1) {
+            return symbols;
+        }
+        for (int i = 0; i < length; i++) {
+            symbols.add(stack.get(stack.size()-1-i));
+        }
+        return symbols;
     }
 
     public String toString(){

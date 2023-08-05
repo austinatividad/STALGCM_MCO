@@ -49,7 +49,7 @@ public class Machine {
         if (stateStacks.getStack() != null && !isAccepted) {
             stepCount++;
             currentStack = stateStacks.getStack();
-            transitionLog.add(currentStack.state.getSymbol());
+
             tape.setCurrentIndex(currentStack.inputIndex);
             tape.increment();
             stack0 = currentStack.stack0;
@@ -70,11 +70,12 @@ public class Machine {
             //    isAccepted = true;
             //}
             System.out.println("State Stacks: " + stateStacks.getStackSize());
+            transitionLog.add(currentStack.transition.getNextState().getSymbol());
         }
     }
 
     private ArrayList<StateStackItem> branchCurrentState(State state, Tape tape) {
-        ArrayList<StateStackItem> returnStates = new ArrayList<StateStackItem>();
+        ArrayList<StateStackItem> returnStates = new ArrayList<>();
         System.out.println("Branching from: " + state.getSymbol().getValue());
         returnStates = state.getTransitions().getValidTransitions(state, tape.getCurrentSymbol(), tape.getCurrentIndex(), stack0, stack1);
 

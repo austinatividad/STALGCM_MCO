@@ -32,51 +32,84 @@ public class Transition {
         this.nextState = nextState;
     }
     public Transition() {
-        
+
     }
 
     public Transition getTransition(){
         return this;
     }
 
-    public Boolean validTransition(Symbol symbol, Stack stack0, Stack stack1) {
+    private boolean pppp(Symbol symbol, Stack stack0, Stack stack1) {
+        stack0.pop(popStack_0);
+        stack1.pop(popStack_1);
+        stack0.push(pushStack_0);
+        stack1.push(pushStack_1);
+        System.out.println("pop pop push push");
+        return true;
+    }
+
+    private boolean pipp(Symbol symbol, Stack stack0, Stack stack1) {
+        stack0.pop(popStack_0);
+        stack0.push(pushStack_0);
+        stack1.push(pushStack_1);
+        System.out.println("pop ignore push push");
+        return true;
+    }
+
+    private boolean ippp(Symbol symbol, Stack stack0, Stack stack1) {
+        stack1.pop(popStack_1);
+        stack0.push(pushStack_0);
+        stack1.push(pushStack_1);
+        System.out.println("ignore pop push push");
+        return true;
+    }
+
+    private boolean iipp(Symbol symbol, Stack stack0, Stack stack1) {
+        stack0.push(pushStack_0);
+        stack1.push(pushStack_1);
+        System.out.println("ignore ignore push push");
+        return true;
+    }
+
+    private String checkMultipleSymbol(Symbol symbol, Stack stack){
+        for (int i = 0; i < symbol.getValue().length(); i++) {
+            System.out.println("testing this: " + stack.getLastSymbols(symbol.getValue().length()));
+            StringBuilder output = new StringBuilder();
+            for (Symbol symbols: stack.getLastSymbols(symbol.getValue().length())) {
+                output.append(symbols.getValue());
+                System.out.println("testing this: " + symbols.getValue());
+            }
+            if (output.toString().equals(symbol.getValue())) {
+                System.out.println("Found a match");
+                return output.toString();
+            }
+        }
+        return "";
+    }
+    public Boolean validTransition(Symbol symbol, Stack stack0, Stack stack1) { // ----- FIX
+        checkMultipleSymbol(symbol, stack0);
         System.out.println("Stack 0: " + stack0.toString());
         System.out.println("Stack 1: " + stack1.toString());
-        if (symbol.getValue().equals(inputSymbol.getValue())) {
-            if (!popStack_0.getValue().equals("L")) {
-                if (stack0.getLastSymbol().getValue().equals(popStack_0.getValue())) {
-                    if (!popStack_1.getValue().equals("L")) {
-                        if (stack1.getLastSymbol().getValue().equals(popStack_1.getValue())) {
-                            stack0.pop();
-                            stack1.pop();
-                            stack0.push(pushStack_0);
-                            stack1.push(pushStack_1);
-                            System.out.println("pop pop push push");
-                            return true;
-                        }
-                    } else {
-                        stack0.pop();
-                        stack0.push(pushStack_0);
-                        stack1.push(pushStack_1);      
-                        System.out.println("pop ignore push push");    
-                        return true;
-                    }
-                }
-            } else {
+        if (!symbol.getValue().equals(inputSymbol.getValue())) {
+            return false;
+        }
+        if (!popStack_0.getValue().equals("L")) {
+            if (!checkMultipleSymbol(popStack_0, stack0).equals("")) {
                 if (!popStack_1.getValue().equals("L")) {
-                    if (stack1.getLastSymbol().getValue().equals(popStack_1.getValue())) {
-                        stack1.pop();
-                        stack0.push(pushStack_0);
-                        stack1.push(pushStack_1);
-                        System.out.println("ignore pop push push");             
-                        return true;
+                    if (!checkMultipleSymbol(popStack_1, stack1).equals("")) {
+                        return pppp(symbol, stack0, stack1);
                     }
                 } else {
-                    stack0.push(pushStack_0);
-                    stack1.push(pushStack_1);    
-                    System.out.println("ignore ignore push push");              
-                    return true;           
+                    return pipp(symbol, stack0, stack1);
                 }
+            }
+        } else {
+            if (!popStack_1.getValue().equals("L")) {
+                if (!checkMultipleSymbol(popStack_1, stack1).equals("")) {
+                    return ippp(symbol, stack0, stack1);
+                }
+            } else {
+                return iipp(symbol, stack0, stack1);
             }
         }
         return false;
@@ -103,4 +136,7 @@ public class Transition {
         }
     }
 
+    public State getNextState() {
+        return nextState;
+    }
 }
