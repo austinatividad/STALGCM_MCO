@@ -54,15 +54,14 @@ D
 It is assumed that [machine.txt](./inputs/machine.txt) is always in the correct format. The program will not execute if the format is incorrect.
 
 ### Formal Definition Restrictions
-- "L" is a reserved keyword for lambda. It cannot be used as a state or symbol name, doing so will cause the program to malfunction.
+- "L" is a reserved keyword for lambda. It cannot be used as a state or stack symbol name, doing so will cause the program to malfunction.
 - Number of states must be greater than 0.
 - Number of transitions must be greater than 0.
 - Initial and Final states must be defined, and in the list of states.
 - Input tape must be defined, and the input alphabet is derived from the input tape.
 - Number of stack symbols must be greater than 0.
 - The transition functions must strictly follow the format.
-  - Multiple symbol pop and push is supported
-- 
+- Multiple symbol pop and push is supported.
 
 ## UI Design and Navigation
 ### Components
