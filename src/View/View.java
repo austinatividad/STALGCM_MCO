@@ -221,6 +221,7 @@ public class View {
                 JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Accepted.");
                 stepButton.setText("Restart Software to Simulate Again");
                 stepButton.setEnabled(false);
+                updateView();
             }
 
 
@@ -366,8 +367,10 @@ public class View {
         //testing
         //statusLabel.setText("Status: Accepted");
         checkStatus();
-
+        System.out.println("From View: " + machine.getStack(0).toString());
+        System.out.println("From View: " + machine.getStack(1).toString());
         stack0Label.setText("Stack 0: " + machine.getStack(0).toString());
+
 
         //testing
         //stack0Label.setText("Stack 0: XXXXXXZ");

@@ -50,12 +50,9 @@ public class Stack {
             }
             return;
         }
-
         if (!symbol.getValue().equals("L")) {
             stack.add(symbol);
         }
-        //handle multi-line input by separating into separate stack.add calls
-
     }
 
     public Symbol pop(){
