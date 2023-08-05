@@ -1,16 +1,16 @@
 4
 A B C D
-9
-0 0 0 1 1 1 2 2 2
-1
-0
 6
-B L L L L L C
-A 0 L 0 L 0 A
-C 2 L L 0 L C
-C L Z L Z L D
-B 1 0 L L L B
+a a b b c c
+1
+X
+6
+A a L XX L X A
 A L L L L L B
+B b XX L L L B
+B L L L L L C
+C c L L X L C
+C L Z L Z L D
 A
 1
 D

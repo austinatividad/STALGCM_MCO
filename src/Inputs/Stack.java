@@ -15,7 +15,7 @@ public class Stack {
     }
 
     public Stack(Stack stack) {
-        this.stack = stack.getStack();
+        this.stack = (ArrayList)stack.getStack().clone();
     }
 
     public ArrayList<Symbol> getStack() {
@@ -36,8 +36,8 @@ public class Stack {
     public String getLastSymbols(int x) {
         StringBuilder string = new StringBuilder();
 
-        for (int i = stack.size() - 1; i >= 0; i--) {
-            
+        for (int i = stack.size() - 1; i >= stack.size() - x; i--) {
+            string.append(stack.get(i).getValue());
         }
 
         return string.toString();
@@ -61,6 +61,15 @@ public class Stack {
     public Symbol pop(){
         Symbol symbol = stack.get(stack.size()-1);
         stack.remove(stack.size()-1);
+        return symbol;
+    }
+
+    public ArrayList<Symbol> pop(int x){
+        ArrayList<Symbol> symbol = new ArrayList<>();
+        for (int i = 0; i < x; i++) {
+            symbol.add(stack.get(stack.size()-1));
+            stack.remove(stack.size()-1);
+        }
         return symbol;
     }
 

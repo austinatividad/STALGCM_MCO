@@ -199,7 +199,7 @@ public class Main {
 
         //RUN View
 
-    }  catch (FileNotFoundException e) {
+    } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
     } catch (IOException e) {
         throw new RuntimeException(e);

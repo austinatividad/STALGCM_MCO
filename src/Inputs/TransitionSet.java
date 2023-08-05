@@ -29,7 +29,7 @@ public class TransitionSet {
             newStack0 = new Stack(stack0);
             newStack1 = new Stack(stack1);
 
-            if (transition.validTransition(l, stack0, stack1)) {
+            if (transition.validTransition(l, newStack0, newStack1)) {
                 stackItems.add(new StateStackItem(transition.nextState, transition, newStack0, newStack1, inputIndex - 1));
                 System.out.println("Added lambda Transition");
             }
@@ -39,7 +39,7 @@ public class TransitionSet {
             newStack0 = new Stack(stack0);
             newStack1 = new Stack(stack1);
 
-            if (transition.validTransition(symbol, stack0, stack1)) {
+            if (transition.validTransition(symbol, newStack0, newStack1)) {
                 stackItems.add(new StateStackItem(transition.nextState, transition, newStack0, newStack1, inputIndex));
                 System.out.println("Added " + transition.nextState.getSymbol().getValue() + " Transition");
             }
