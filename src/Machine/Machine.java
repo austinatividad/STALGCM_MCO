@@ -49,7 +49,6 @@ public class Machine {
         if (stateStacks.getStack() != null && !isAccepted) {
             stepCount++;
             currentStack = stateStacks.getStack();
-            transitionLog.add(currentStack.state.getSymbol());
             tape.setCurrentIndex(currentStack.inputIndex);
             tape.increment();
             stack0 = currentStack.stack0;
@@ -70,6 +69,7 @@ public class Machine {
             //    isAccepted = true;
             //}
             System.out.println("State Stacks: " + stateStacks.getStackSize());
+            transitionLog.add(currentStack.transition.getNextState().getSymbol());
         }
     }
 

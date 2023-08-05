@@ -103,4 +103,8 @@ public class Transition {
         }
     }
 
+    public State getNextState() {
+        return nextState;
+    }
+
 }
