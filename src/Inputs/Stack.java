@@ -33,6 +33,16 @@ public class Stack {
         return stack.get(stack.size()-1);
     }
 
+    public String getLastSymbols(int x) {
+        StringBuilder string = new StringBuilder();
+
+        for (int i = stack.size() - 1; i >= 0; i--) {
+            
+        }
+
+        return string.toString();
+    }
+
     public void push(Symbol symbol){
         if (symbol.getValue().length() > 1) {
             for (int i = 0; i < symbol.getValue().length(); i++) {
