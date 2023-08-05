@@ -108,6 +108,9 @@ public class Transition {
     }
 
     public State getNextState() {
+        if(nextState == null) {
+            return null;
+        }
         return nextState;
     }
 

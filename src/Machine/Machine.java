@@ -70,13 +70,21 @@ public class Machine {
             //}
             System.out.println("State Stacks: " + stateStacks.getStackSize());
 
-            try{ // ---------------- TODO: NOT SURE IF THIS WILL ALWAYS WORK ----------------
-                currentTransition = currentStack.transition;
-                System.out.println("Current Transition: " + currentTransition.toString());
-                transitionLog.add(currentStack.transition.getNextState().getSymbol());
-            } catch (NullPointerException e) {
+//            try{ // ---------------- TODO: NOT SURE IF THIS WILL ALWAYS WORK ----------------
+            //              TODO: MULTIVERSE THING WONT WORK? EXAMPLE SENT IN MESSENGER
+//                currentTransition = currentStack.transition;
+//                System.out.println("Current Transition: " + currentTransition.toString());
+//
+//            } catch (NullPointerException e) {
+//                System.out.println("Current Transition: null");
+//            }
+            if (currentStack.transition.getNextState() == null) {
                 System.out.println("Current Transition: null");
+            } else {
+                System.out.println("Current Transition: " + currentStack.transition.toString());
+                transitionLog.add(currentStack.transition.getNextState().getSymbol());
             }
+
 
 
         }
