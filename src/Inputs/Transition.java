@@ -71,7 +71,7 @@ public class Transition {
         return true;
     }
 
-    private String checkMultipleSymbol(Symbol symbol, Stack stack){
+    private boolean checkMultipleSymbol(Symbol symbol, Stack stack){ //XX
         for (int i = 0; i < symbol.getValue().length(); i++) {
             System.out.println("testing this: " + stack.getLastSymbols(symbol.getValue().length()));
             StringBuilder output = new StringBuilder();
@@ -81,10 +81,10 @@ public class Transition {
             }
             if (output.toString().equals(symbol.getValue())) {
                 System.out.println("Found a match");
-                return output.toString();
+                return true;
             }
         }
-        return "";
+        return false;
     }
     public Boolean validTransition(Symbol symbol, Stack stack0, Stack stack1) { // ----- FIX
         checkMultipleSymbol(symbol, stack0);
@@ -94,9 +94,9 @@ public class Transition {
             return false;
         }
         if (!popStack_0.getValue().equals("L")) {
-            if (!checkMultipleSymbol(popStack_0, stack0).equals("")) {
+            if (!checkMultipleSymbol(popStack_0, stack0)) {
                 if (!popStack_1.getValue().equals("L")) {
-                    if (!checkMultipleSymbol(popStack_1, stack1).equals("")) {
+                    if (!checkMultipleSymbol(popStack_1, stack1)) {
                         return pppp(symbol, stack0, stack1);
                     }
                 } else {
@@ -105,7 +105,7 @@ public class Transition {
             }
         } else {
             if (!popStack_1.getValue().equals("L")) {
-                if (!checkMultipleSymbol(popStack_1, stack1).equals("")) {
+                if (!checkMultipleSymbol(popStack_1, stack1)) {
                     return ippp(symbol, stack0, stack1);
                 }
             } else {
