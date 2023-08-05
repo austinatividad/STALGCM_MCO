@@ -50,13 +50,6 @@ A
 1
 D
 ```
-<<<<<<< HEAD
-
-=======
-<div style="text-align: center;">
-Sample PDA that accepts the language {0^n 1^n 2^n | n >= 0}
-</div>
->>>>>>> parent of 8149d45 (edited files)
 
 It is assumed that [machine.txt](./inputs/machine.txt) is always in the correct format. The program will not execute if the format is incorrect.
 
