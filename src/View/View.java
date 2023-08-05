@@ -1,7 +1,6 @@
 package View;
 import javax.swing.*;
 import java.awt.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -63,42 +62,10 @@ public class View {
 
     public View(Machine machine) {
         this.machine = machine;
-        JFrame startScreen = new JFrame("2-Stack Pushdown Automata");
-        startScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        startScreen.setSize(480, 200);
-        startScreen.getContentPane().setBackground(mainWindow);
-        startScreen.setLocationRelativeTo(null);
-        startScreen.setLayout(new FlowLayout());
-        startScreen.setResizable(false);
-
-
-        JButton startButton = new JButton("Start");
-        startButton.setPreferredSize(new Dimension(200, 50));
-        startButton.setSize(200, 50);
-        startButton.setBackground(componentColor);
-        startButton.addActionListener(e -> {
-            startScreen.setVisible(false);
-            runMainWindow();
-        });
-        startScreen.add(startButton);
-
-        JButton instructionsButton = new JButton("Instructions");
-        instructionsButton.setBackground(componentColor);
-        instructionsButton.setPreferredSize(new Dimension(200, 50));
-        instructionsButton.setSize(200, 50);
-        instructionsButton.addActionListener(e -> {
-            try {
-                Desktop.getDesktop().browse(new URL("https://github.com/austinatividad/STALGCM_MCO#readme").toURI());
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
-        startScreen.add(instructionsButton);
-        startScreen.setVisible(true);
-    }
-
-    public void runMainWindow(){
         initializeComponents();
+
+
+
     }
 
 
@@ -300,23 +267,22 @@ public class View {
         tapeLabel.setSize(460, 20);
         tapeLabel.setVisible(true);
 
+        //TODO: FIX AND SET STRING TO ACTUAL PASSED CURRENT STATE BY MACHINE OBJECT
         automataLabel.setText("<html>" +
-                "<body style='font-size: 8.5px'>" +
+                "<body style=''>" +
                 "<center>" +
                 "Make sure that /inputs/machine.txt is <br>" +
                 "already set to your formal definition.<br><br>" +
-                "It is recommended to read " +
-                "the instructions first <br> found in <u>README.md</u> " +
-                "before using this machine.<br><br>" +
+                "Please refer to README.md for " +
+                "the formal definition.<br><br>" +
                 "Click NEXT STEP to start the simulation." +
                 "</center>" +
                 "</body>" +
-                "</html>"
-        );
+                "</html>");
         automataLabel.setHorizontalAlignment(JLabel.CENTER);
-        automataLabel.setLocation(6, 0);
+        automataLabel.setLocation(6, 40);
         automataPanel.add(automataLabel);
-        automataLabel.setSize(370, 184);
+        automataLabel.setSize(370, 100);
         automataLabel.setVisible(true);
 
 

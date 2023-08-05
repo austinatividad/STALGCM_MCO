@@ -32,13 +32,14 @@ public class Transition {
         this.nextState = nextState;
     }
     public Transition() {
-
+        
     }
 
     public Transition getTransition(){
         return this;
     }
 
+<<<<<<< HEAD
     private boolean pppp(Symbol symbol, Stack stack0, Stack stack1) {
         stack0.pop(popStack_0);
         stack1.pop(popStack_1);
@@ -107,9 +108,46 @@ public class Transition {
             if (!popStack_1.getValue().equals("L")) {
                 if (!checkMultipleSymbol(popStack_1, stack1)) {
                     return ippp(symbol, stack0, stack1);
+=======
+    public Boolean validTransition(Symbol symbol, Stack stack0, Stack stack1) {
+        System.out.println("Stack 0: " + stack0.toString());
+        System.out.println("Stack 1: " + stack1.toString());
+        if (symbol.getValue().equals(inputSymbol.getValue())) {
+            if (!popStack_0.getValue().equals("L")) {
+                if (stack0.getLastSymbol().getValue().equals(popStack_0.getValue())) {
+                    if (!popStack_1.getValue().equals("L")) {
+                        if (stack1.getLastSymbol().getValue().equals(popStack_1.getValue())) {
+                            stack0.pop();
+                            stack1.pop();
+                            stack0.push(pushStack_0);
+                            stack1.push(pushStack_1);
+                            System.out.println("pop pop push push");
+                            return true;
+                        }
+                    } else {
+                        stack0.pop();
+                        stack0.push(pushStack_0);
+                        stack1.push(pushStack_1);      
+                        System.out.println("pop ignore push push");    
+                        return true;
+                    }
+>>>>>>> parent of 7082339 (changed behavior)
                 }
             } else {
-                return iipp(symbol, stack0, stack1);
+                if (!popStack_1.getValue().equals("L")) {
+                    if (stack1.getLastSymbol().getValue().equals(popStack_1.getValue())) {
+                        stack1.pop();
+                        stack0.push(pushStack_0);
+                        stack1.push(pushStack_1);
+                        System.out.println("ignore pop push push");             
+                        return true;
+                    }
+                } else {
+                    stack0.push(pushStack_0);
+                    stack1.push(pushStack_1);    
+                    System.out.println("ignore ignore push push");              
+                    return true;           
+                }
             }
         }
         return false;
@@ -136,7 +174,4 @@ public class Transition {
         }
     }
 
-    public State getNextState() {
-        return nextState;
-    }
 }

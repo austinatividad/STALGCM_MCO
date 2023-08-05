@@ -10,9 +10,7 @@ Made by [Josh Austin Mikhail T. Natividad](https://github.com/austinatividad) an
 - [Running the Program](#running-the-program)
 
 
-GASDHFIGASDYUFAWEFGAIEG AFEG IAWGEFYILWEGFIGAWEYIFGAWYIEFG
 
-ADD RESTRICTIONS
 # Machine: Two-Stack PDA
 ## Formal Definition Instructions
 To create a Machine Definition, the user must modify [machine.txt](./inputs/machine.txt) in the following format:
@@ -20,7 +18,7 @@ To create a Machine Definition, the user must modify [machine.txt](./inputs/mach
 3              #number of states
 A B C          #state names
 5              # size of input tape
-0 1 0 1 0      # input tape; input alphabet is derived from this
+0 1 0 1 0      # input tape
 4              # number of stack symbols
 a b c d        # symbol names
 3              # number of transitions
@@ -51,6 +49,11 @@ A
 D
 ```
 
+<<<<<<< HEAD
+=======
+Sample PDA that accepts the language {0^n 1^n 2^n | n >= 0}
+
+>>>>>>> parent of 7082339 (changed behavior)
 It is assumed that [machine.txt](./inputs/machine.txt) is always in the correct format. The program will not execute if the format is incorrect.
 
 
