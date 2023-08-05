@@ -167,7 +167,7 @@ D
 **3rd case: A machine that uses both stacks**
 
 
-A machine that accepts the language {a^n b^m, n>=1 ∧ m>=1 ∧ m = 2n} <br>
+A machine that accepts the language {a^n b^m c^n, m=2n ∧ n,m>=1} <br>
 Using Stack 0 and Stack 1, fully utilizing the machine.
 
 ```bash
@@ -195,8 +195,8 @@ A machine that accepts the language {a^i b^i c^i, i >= 0} <br>
 ```bash
 4
 A B C D
-6
-a a b b c c
+6               #change to test other inputs
+a a b b c c     #change to test other inputs
 1
 X
 6
