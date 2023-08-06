@@ -19,18 +19,22 @@ public class TransitionSet {
         return transitions.size();
     }
 
-    public ArrayList<StateStackItem> getValidTransitions(State currentState, Symbol symbol, int inputIndex, Stack stack0, Stack stack1) {
+    public ArrayList<StateStackItem> getValidTransitions(State currentState, Symbol symbol, ArrayList<Symbol> pastTransitions, int inputIndex, Stack stack0, Stack stack1) {
         ArrayList<StateStackItem> stackItems = new ArrayList<>();
         Stack newStack0;
         Stack newStack1;
+        ArrayList<Symbol> newPastTransitions;
 
         Symbol l = new Symbol("L");
         for (Transition transition : transitions) {
             newStack0 = new Stack(stack0);
             newStack1 = new Stack(stack1);
 
+            newPastTransitions = (ArrayList<Symbol>)pastTransitions.clone();
+
             if (transition.validTransition(l, newStack0, newStack1)) {
-                stackItems.add(new StateStackItem(transition.nextState, transition, newStack0, newStack1, inputIndex - 1));
+                newPastTransitions.add(transition.nextState.getSymbol());
+                stackItems.add(new StateStackItem(transition.nextState, transition, pastTransitions, newStack0, newStack1, inputIndex - 1));
                 System.out.println("Added lambda Transition");
             }
         }
@@ -38,9 +42,12 @@ public class TransitionSet {
         for (Transition transition : transitions) {
             newStack0 = new Stack(stack0);
             newStack1 = new Stack(stack1);
+            
+            newPastTransitions = (ArrayList<Symbol>)pastTransitions.clone();
 
             if (transition.validTransition(symbol, newStack0, newStack1)) {
-                stackItems.add(new StateStackItem(transition.nextState, transition, newStack0, newStack1, inputIndex));
+                newPastTransitions.add(transition.nextState.getSymbol());
+                stackItems.add(new StateStackItem(transition.nextState, transition, pastTransitions, newStack0, newStack1, inputIndex));
                 System.out.println("Added " + transition.nextState.getSymbol().getValue() + " Transition");
             }
         }

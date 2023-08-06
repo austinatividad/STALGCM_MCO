@@ -25,14 +25,16 @@ public class Machine {
     private Transition currentTransition;
     private int stepCount = 0;
 
-    private ArrayList<Symbol> transitionLog = new ArrayList<Symbol>();
+    private ArrayList<ArrayList<Symbol>> transitionLog = new ArrayList<ArrayList<Symbol>>();
+    private int logCounter = 0;
 
     //Constructor
     public Machine(Alphabet stackAlphabet, Tape tape, ArrayList<State> stateSet, State startState){
         this.tape = tape;
         this.stateSet = stateSet;
         this.stackAlphabet = stackAlphabet;
-        stateStacks.addStack(startState, new Transition(), new Stack(stack0), new Stack(stack1), -1);
+        transitionLog.add(new ArrayList<>());
+        stateStacks.addStack(startState, new Transition(), transitionLog.get(logCounter), new Stack(stack0), new Stack(stack1), -1);
     }
 
     public Stack getStack0() {
@@ -65,12 +67,11 @@ public class Machine {
                     isAccepted = true;
                 }
             }
-            //if ((stack0.isEmpty() && stack1.isEmpty())) {
-            //    isAccepted = true;
-            //}
+            if ((stack0.isEmpty() && stack1.isEmpty())) {
+                isAccepted = true;
+            }
             System.out.println("State Stacks: " + stateStacks.getStackSize());
-
-//            try{ // ---------------- TODO: NOT SURE IF THIS WILL ALWAYS WORK ----------------
+//          try{ // ---------------- TODO: NOT SURE IF THIS WILL ALWAYS WORK ----------------
             //              TODO: MULTIVERSE THING WONT WORK? EXAMPLE SENT IN MESSENGER
 //                currentTransition = currentStack.transition;
 //                System.out.println("Current Transition: " + currentTransition.toString());
@@ -78,22 +79,24 @@ public class Machine {
 //            } catch   (NullPointerException e) {
 //                System.out.println("Current Transition: null");
 //            }
-            if (currentStack.transition.getNextState() == null) {
+            if (currentBranches.size() == 0) {
                 System.out.println("Current Transition: null");
+                logCounter++;
+                transitionLog.add(new ArrayList<>());
+                transitionLog.get(logCounter).add(new Symbol("<br>"));
+                transitionLog.get(logCounter).addAll(currentStack.pastTransitions);
             } else {
                 System.out.println("Current Transition: " + currentStack.transition.toString());
-                transitionLog.add(currentStack.transition.getNextState().getSymbol());
+                transitionLog.get(logCounter).add(currentStack.transition.getNextState().getSymbol());
+                
             }
-
-
-
         }
     }
 
     private ArrayList<StateStackItem> branchCurrentState(State state, Tape tape) {
         ArrayList<StateStackItem> returnStates = new ArrayList<StateStackItem>();
         System.out.println("Branching from: " + state.getSymbol().getValue());
-        returnStates = state.getTransitions().getValidTransitions(state, tape.getCurrentSymbol(), tape.getCurrentIndex(), stack0, stack1);
+        returnStates = state.getTransitions().getValidTransitions(state, tape.getCurrentSymbol(), transitionLog.get(logCounter), tape.getCurrentIndex(), stack0, stack1);
 
         //Adds itself again because there are no transitions
 //        if (returnStates.size() == 0) {
@@ -180,18 +183,17 @@ public class Machine {
 
         if(transitionLog.size() == 0) {
             return "";
-        } else if (transitionLog.size() == 1){
-            return transitionLog.get(0).getValue();
         } else {
-            for(int i = 0; i < transitionLog.size() ; i++) {
-                if(transitionLog.size()-i == 1) {
-                    string += transitionLog.get(i).getValue();
-                } else {
-                    string += transitionLog.get(i).getValue() + " ⮕ ";
+            for (int i = 0; i < transitionLog.size(); i++) {
+                for (int j = 0; j < transitionLog.get(i).size(); j++) {
+                    if(transitionLog.get(i).size() - j == 1 || j == 0) {
+                        string += transitionLog.get(i).get(j).getValue();
+                    } else {
+                        string += transitionLog.get(i).get(j).getValue() + " ⮕ ";
+                    }
                 }
             }
         }
-
 
         return string;
     }
