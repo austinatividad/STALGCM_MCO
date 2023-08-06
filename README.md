@@ -138,6 +138,7 @@ c c t X a a
 a c t g X a t c g
 ```
 
+machine.txt definition (copy to machine.txt)
 ```bash
 4
 A B C D
