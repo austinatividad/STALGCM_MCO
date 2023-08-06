@@ -71,14 +71,7 @@ public class Machine {
                 isAccepted = true;
             }
             System.out.println("State Stacks: " + stateStacks.getStackSize());
-//          try{ // ---------------- TODO: NOT SURE IF THIS WILL ALWAYS WORK ----------------
-            //              TODO: MULTIVERSE THING WONT WORK? EXAMPLE SENT IN MESSENGER
-//                currentTransition = currentStack.transition;
-//                System.out.println("Current Transition: " + currentTransition.toString());
-//
-//            } catch   (NullPointerException e) {
-//                System.out.println("Current Transition: null");
-//            }
+            // ---------------- TODO: NOT SURE IF THIS WILL ALWAYS WORK ----------------
             if (currentBranches.size() == 0) {
                 System.out.println("Current Transition: null");
                 logCounter++;
