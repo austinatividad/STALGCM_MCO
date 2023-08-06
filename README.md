@@ -125,8 +125,14 @@ Accepted Strings:
 ###### (separated with spaces for convenience in replacing machine.txt)
 ```bash
 a c t g X t g a c
+```
+```bash
 a c t g a c t g X t g a c t g a c
+```
+```bash
 a a a a g g g g X t t t t c c c c
+```
+```bash
 g a g a c c t t g a g a c c t t X c t c t g g a a c t c t g g a a
 ```
 
@@ -134,7 +140,11 @@ Rejected Strings:
 ###### (separated with spaces for convenience in replacing machine.txt)
 ```bash
 a c t g X a
+```
+```bash
 c c t X a a
+```
+```bash
 a c t g X a t c g
 ```
 
