@@ -75,7 +75,7 @@ public class Machine {
 //                currentTransition = currentStack.transition;
 //                System.out.println("Current Transition: " + currentTransition.toString());
 //
-//            } catch (NullPointerException e) {
+//            } catch   (NullPointerException e) {
 //                System.out.println("Current Transition: null");
 //            }
             if (currentStack.transition.getNextState() == null) {
@@ -96,9 +96,9 @@ public class Machine {
         returnStates = state.getTransitions().getValidTransitions(state, tape.getCurrentSymbol(), tape.getCurrentIndex(), stack0, stack1);
 
         //Adds itself again because there are no transitions
-        if (returnStates.size() == 0) {
-            returnStates.add(new StateStackItem(state, new Transition(), stack0, stack1, 0));
-        }
+//        if (returnStates.size() == 0) {
+//            returnStates.add(new StateStackItem(state, new Transition(), stack0, stack1, 0));
+//        }
 
         System.out.println("");
 
