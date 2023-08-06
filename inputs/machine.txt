@@ -1,7 +1,7 @@
 4
 A B C D
 17
-a c t g a c t g X t g a c t g a c
+g a g a c c t t g a g a c c t t X c t c t g g a a c t c t g g a a
 4
 a c t g
 15

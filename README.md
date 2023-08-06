@@ -114,6 +114,60 @@ last used by the machine will be highlighted in red.
 </div>
 
 ## Sample Input and Output
+
+
+
+### Real life Application
+
+This machine accepts the language αXβ where α is a sequence of DNA nucleotides, while β is the string with the corresponding base pairs of α. This machine will perform as an acceptor for checking if the sequenece β is correctly matched with α.
+
+Accepted Strings:
+###### (separated with spaces for convenience in replacing machine.txt)
+```bash
+a c t g X t g a c
+a c t g a c t g X t g a c t g a c
+a a a a g g g g X t t t t c c c c
+g a g a c c t t g a g a c c t t X c t c t g g a a c t c t g g a a
+```
+
+Rejected Strings:
+###### (separated with spaces for convenience in replacing machine.txt)
+```bash
+a c t g X a
+c c t X a a
+a c t g X a t c g
+```
+
+```bash
+4
+A B C D
+17                                  #change to test other inputs
+a c t g a c t g X t g a c t g a c   #change to test other inputs
+4
+a c t g
+15
+A a L a L L A
+A c L c L L A
+A t L t L L A 
+A g L g L L A
+A X L L L L B
+B t L L L a B
+B a L L L t B
+B c L L L g B
+B g L L L c B
+B L L L L L C
+C L a L a L C
+C L c L c L C
+C L t L t L C
+C L g L g L C
+C L Z L Z L D
+A
+1
+D
+```
+
+### Other uses to simulate features and operations
+
 **1st Case: using Stack 0**
 
 A machine that accepts the language {a^n b^n, n>=1} <br>

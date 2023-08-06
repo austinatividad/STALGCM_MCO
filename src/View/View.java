@@ -235,10 +235,10 @@ public class View {
         FlowLayout layout = new FlowLayout();
         layout.setHgap(10);
         layout.setVgap(10);
-        transitionWindow.setSize(280, 390);
+        transitionWindow.setSize(680, 300);
         transitionWindow.getContentPane().setBackground(mainWindow);
         transitionWindow.setLayout(layout);
-        transitionWindow.setLocation(frame.getX() + frame.getWidth(), frame.getY());
+        transitionWindow.setLocation(frame.getX() + 120, frame.getY() + frame.getHeight() + 5);
         transitionWindow.setVisible(true);
 
     }
