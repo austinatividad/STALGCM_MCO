@@ -207,6 +207,9 @@ public class View {
             } catch(Error err) {
                 JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Rejected.");
                 stepButton.setEnabled(false);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Rejected.");
+                stepButton.setEnabled(false);
             }
             try {
                 updateView();
