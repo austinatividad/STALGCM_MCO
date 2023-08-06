@@ -83,7 +83,6 @@ public class Machine {
                 System.out.println("Current Transition: null");
                 logCounter++;
                 transitionLog.add(new ArrayList<>());
-                transitionLog.get(logCounter).add(new Symbol("<br>"));
                 transitionLog.get(logCounter).addAll(currentStack.pastTransitions);
             } else {
                 System.out.println("Current Transition: " + currentStack.transition.toString());
@@ -186,12 +185,13 @@ public class Machine {
         } else {
             for (int i = 0; i < transitionLog.size(); i++) {
                 for (int j = 0; j < transitionLog.get(i).size(); j++) {
-                    if(transitionLog.get(i).size() - j == 1 || j == 0) {
+                    if(transitionLog.get(i).size() - j == 1) {
                         string += transitionLog.get(i).get(j).getValue();
                     } else {
                         string += transitionLog.get(i).get(j).getValue() + " ⮕ ";
                     }
                 }
+                string += "<br>";
             }
         }
 
