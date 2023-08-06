@@ -358,6 +358,29 @@ public class View {
             transitionPanels.get(i).add(transitionLabels.get(i));
 
         }
+            JPanel lastRead = new JPanel();
+            lastRead.setSize(200, 30);
+            lastRead.setPreferredSize(new Dimension(200, 30));
+            lastRead.setBackground(transitionCurrentColor);
+
+            JLabel lastReadLabel = new JLabel("Last Used Transition");
+            lastReadLabel.setLocation(5, 5);
+
+            lastRead.add(lastReadLabel);
+
+            transitionWindow.add(lastRead);
+
+            JPanel availableTransitions = new JPanel();
+            availableTransitions.setSize(200, 30);
+            availableTransitions.setPreferredSize(new Dimension(200, 30));
+            availableTransitions.setBackground(transitionHighlightedColor);
+
+            JLabel availableTransitionsLabel = new JLabel("Available Transitions");
+
+            availableTransitions.add(availableTransitionsLabel);
+
+            transitionWindow.add(availableTransitions);
+
     }
 
     private void updateView(){

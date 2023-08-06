@@ -1,18 +1,24 @@
 4
 A B C D
-13
-0 1 1 0 1 1 X 0 1 1 0 1 1
-2
-0 1
-9
-A 0 L 0 L L A
-A 1 L 1 L L A
+17
+a c t g a c t g X t g a c t g a c
+4
+a c t g
+15
+A a L a L L A
+A c L c L L A
+A t L t L L A 
+A g L g L L A
 A X L L L L B
-B 0 L L L 0 B
-B 1 L L L 1 B
+B t L L L a B
+B a L L L t B
+B c L L L g B
+B g L L L c B
 B L L L L L C
-C L 1 L 1 L C 
-C L 0 L 0 L C
+C L a L a L C
+C L c L c L C
+C L t L t L C
+C L g L g L C
 C L Z L Z L D
 A
 1
