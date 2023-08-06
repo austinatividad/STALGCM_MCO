@@ -179,6 +179,15 @@ public class Machine {
             return "";
         } else {
             for (int i = 0; i < transitionLog.size(); i++) {
+                if (i == transitionLog.size() - 1) {
+                    if (isAccepted) {
+                        string += "<span style=\"color:green\">";
+                    } else {
+                        string += "<span style=\"color:blue\">";
+                    }
+                } else {
+                    string += "<span style=\"color:red\">";
+                }
                 for (int j = 0; j < transitionLog.get(i).size(); j++) {
                     if(transitionLog.get(i).size() - j == 1) {
                         string += transitionLog.get(i).get(j).getValue();
@@ -186,6 +195,7 @@ public class Machine {
                         string += transitionLog.get(i).get(j).getValue() + " ⮕ ";
                     }
                 }
+                string += "</span>";
                 string += "<br>";
             }
         }
