@@ -1,16 +1,18 @@
 4
 A B C D
-4
-a a c c
-1
-X
-7
-A a L L L X A
-A L L L L L B
-A L L L L L C
-B c L L X L B
-B L Z L Z L D
-C c L L L L C
+3
+1X1
+2
+0 1
+9
+A 0 L 0 L L A
+A 1 L 1 L L A
+A X L L L L B
+B 0 L L L 0 B
+B 1 L L L 1 B
+B L L L L L C
+C 1 1 L 1 L C 
+C 0 0 L 0 L C
 C L Z L Z L D
 A
 1
