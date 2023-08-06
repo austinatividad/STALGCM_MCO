@@ -205,14 +205,14 @@ public class View {
             try {
                 machine.stepSim();
             } catch(Error err) {
-                JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Rejected. Due to Error err");
+                JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Rejected.");
                 stepButton.setEnabled(false);
             }
             try {
                 updateView();
 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Rejected. Due to Exception ex");
+                JOptionPane.showMessageDialog(frame, "Simulation has Ended. String Rejected.");
                 stepButton.setEnabled(false);
             }
 
