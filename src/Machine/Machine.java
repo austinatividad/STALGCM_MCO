@@ -70,6 +70,8 @@ public class Machine {
             if ((stack0.isEmpty() && stack1.isEmpty())) {
                 isAccepted = true;
             }
+            stack0 = currentStack.stack0;
+            stack1 = currentStack.stack1;
             System.out.println("State Stacks: " + stateStacks.getStackSize());
 //          try{ // ---------------- TODO: NOT SURE IF THIS WILL ALWAYS WORK ----------------
             //              TODO: MULTIVERSE THING WONT WORK? EXAMPLE SENT IN MESSENGER
@@ -87,8 +89,8 @@ public class Machine {
             } else {
                 System.out.println("Current Transition: " + currentStack.transition.toString());
                 transitionLog.get(logCounter).add(currentStack.transition.getNextState().getSymbol());
-                
             }
+
         }
     }
 
