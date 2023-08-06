@@ -293,7 +293,7 @@ public class View {
 
         transitionLogLabel.setLocation(15, 0);
         transitionLogPanel.add(transitionLogLabel);
-        transitionLogLabel.setSize(349, 110);
+        transitionLogLabel.setSize(340, 110);
         transitionLogLabel.setVisible(true);
     }
 
