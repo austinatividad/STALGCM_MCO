@@ -51,8 +51,7 @@ public class Machine {
         if (stateStacks.getStack() != null && !isAccepted) {
             stepCount++;
             currentStack = stateStacks.getStack();
-            tape.setCurrentIndex(currentStack.inputIndex);
-            tape.increment();
+            tape.setCurrentIndex(currentStack.inputIndex + 1);
             stack0 = currentStack.stack0;
             stack1 = currentStack.stack1;
             stateStacks.removeStack();

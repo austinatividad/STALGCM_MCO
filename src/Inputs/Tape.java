@@ -69,6 +69,9 @@ public class Tape {
     }
 
     public String currentIndex(){
+        if (currentIndex >= symbols.size()) {
+            return "Tape Index: " + (symbols.size() - 1);
+        }
         return "Tape Index: " + currentIndex;
     }
 
