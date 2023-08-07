@@ -1,3 +1,10 @@
+/*
+ * Members:
+ * Josh Austin Mikhail T. Natividad
+ * Christian Dave P. Tordillo
+ * STALGCM X22
+ */
+
 import Inputs.*;
 import Machine.*;
 import View.*;
